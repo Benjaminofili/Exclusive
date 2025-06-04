@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initializeProductActions()
   initializeAccountDropdown()
   initializeCategorySlider() // Add this line
+  addSectionButtons()
 })
 
 // Timer state
@@ -109,7 +110,7 @@ function initializeSlider() {
   const dots = document.querySelectorAll(".dot")
   let currentSlide = 0
 
-  if (slides.length === 0) return
+  if (!slides.length === 0) return
 
   function showSlide(index) {
     // Hide all slides
@@ -547,6 +548,27 @@ function initializeCategorySlider() {
       // Ensure current position is valid
       currentPosition = Math.min(currentPosition, maxPosition)
       updateCategorySlider()
+    }
+  })
+}
+
+function addSectionButtons() {
+  const sections = document.querySelectorAll("main > section")
+
+  sections.forEach((section) => {
+    if (section.classList.contains("new-arrival-section")) return // Skip New Arrival section
+
+    const viewAllLink = section.querySelector(".view-all-btn")
+    if (!viewAllLink) {
+      // Create a default button if there is no view-all-btn
+      const button = document.createElement("a")
+      button.href = "#" // Replace with a real link if available
+      button.textContent = "View All"
+      button.classList.add("view-all-btn")
+      const container = document.createElement("div")
+      container.classList.add("view-all-btn-container")
+      container.appendChild(button)
+      section.appendChild(container)
     }
   })
 }
