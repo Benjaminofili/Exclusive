@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initializeProductActions()
   initializeAccountDropdown()
   initializeCategorySlider() // Add this line
-  addSectionButtons()
 })
 
 // Timer state
@@ -552,26 +551,7 @@ function initializeCategorySlider() {
   })
 }
 
-function addSectionButtons() {
-  const sections = document.querySelectorAll("main > section")
 
-  sections.forEach((section) => {
-    if (section.classList.contains("new-arrival-section")) return // Skip New Arrival section
-
-    const viewAllLink = section.querySelector(".view-all-btn")
-    if (!viewAllLink) {
-      // Create a default button if there is no view-all-btn
-      const button = document.createElement("a")
-      button.href = "#" // Replace with a real link if available
-      button.textContent = "View All"
-      button.classList.add("view-all-btn")
-      const container = document.createElement("div")
-      container.classList.add("view-all-btn-container")
-      container.appendChild(button)
-      section.appendChild(container)
-    }
-  })
-}
 
 // Expose timer controls globally for debugging
 window.timerControls = {

@@ -8,12 +8,14 @@
 .contact-info {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 0px;
 }
 
 .contact-card {
   background: #fff;
-  padding: 40px 35px;
+  padding: 20px 25px;
+  width: 340px;
+  height: 268px;
   border-radius: 4px;
   box-shadow: 0 1px 13px rgba(0, 0, 0, 0.05);
 }
@@ -61,7 +63,7 @@
 .contact-form-container {
   background: #fff;
   padding: 40px;
-  border-radius: 4px;
+  margin: 0 auto;
   box-shadow: 0 1px 13px rgba(0, 0, 0, 0.05);
 }
 
@@ -113,6 +115,8 @@
 }
 
 .send-message-btn {
+  margin-top: 50px;
+   padding-top: 50px;
   background-color: #db4444;
   color: #fff;
   border: none;
