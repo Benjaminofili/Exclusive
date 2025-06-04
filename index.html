@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exclusive - E-commerce Store</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/home.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <p>Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <a href="#" class="shop-now">ShopNow</a></p>
+        <div class="language-selector">
+            <span>English</span>
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">Exclusive</a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="What are you looking for?">
+                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                <a href="#" class="icon-btn wishlist-btn"><i class="fa-regular fa-heart"></i></a>
+                <a href="cart.html" class="icon-btn cart-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="account.html" class="icon-btn account-btn"><i class="fa-regular fa-user"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Sidebar and Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="sidebar-hero-wrapper">
+                    <div class="sidebar">
+                        <ul class="category-menu">
+                            <li><a href="#">Woman's Fashion</a> <i class="fa-solid fa-chevron-right"></i></li>
+                            <li><a href="#">Men's Fashion</a> <i class="fa-solid fa-chevron-right"></i></li>
+                            <li><a href="#">Electronics</a></li>
+                            <li><a href="#">Home & Lifestyle</a></li>
+                            <li><a href="#">Medicine</a></li>
+                            <li><a href="#">Sports & Outdoor</a></li>
+                            <li><a href="#">Baby's & Toys</a></li>
+                            <li><a href="#">Groceries & Pets</a></li>
+                            <li><a href="#">Health & Beauty</a></li>
+                        </ul>
+                    </div>
+                    <div class="hero-slider">
+                        <div class="hero-slide active">
+                            <div class="hero-content">
+                                <div class="hero-brand">
+                                    <img src="images/apple-logo.svg" alt="Apple">
+                                    <span>iPhone 14 Series</span>
+                                </div>
+                                <h1>Up to 10% off Voucher</h1>
+                                <a href="#" class="shop-now-link">Shop Now <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                            <div class="hero-image">
+                                <img src="images/iphone-hero.webp" alt="iPhone 14">
+                            </div>
+                        </div>
+                        <div class="slider-dots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Flash Sales Section -->
+        <section class="flash-sales-section section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-title">
+                        <div class="title-indicator"></div>
+                        <h2>Today's</h2>
+                    </div>
+                    <h3>Flash Sales</h3>
+                    <div class="countdown-timer">
+                        <div class="timer-item">
+                            <span class="timer-value" id="days">03</span>
+                            <span class="timer-label">Days</span>
+                        </div>
+                        <div class="timer-item">
+                            <span class="timer-value" id="hours">23</span>
+                            <span class="timer-label">Hours</span>
+                        </div>
+                        <div class="timer-item">
+                            <span class="timer-value" id="minutes">19</span>
+                            <span class="timer-label">Minutes</span>
+                        </div>
+                        <div class="timer-item">
+                            <span class="timer-value" id="seconds">56</span>
+                            <span class="timer-label">Seconds</span>
+                        </div>
+                    </div>
+                    <div class="section-controls">
+                        <button class="control-btn prev"><i class="fa-solid fa-arrow-left"></i></button>
+                        <button class="control-btn next"><i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-badge">-40%</div>
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                            <button class="action-btn quick-view-btn"><i class="fa-regular fa-eye"></i></button>
+                        </div>
+                        <div class="product-image">
+                            <img src="images/gamepad-red.webp" alt="HAVIT HV-G92 Gamepad">
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-title">HAVIT HV-G92 Gamepad</h4>
+                            <div class="product-price">
+                                <span class="current-price">$120</span>
+                                <span class="original-price">$160</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="rating-count">(88)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-badge">-35%</div>
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                            <button class="action-btn quick-view-btn"><i class="fa-regular fa-eye"></i></button>
+                        </div>
+                        <div class="product-image">
+                            <img src="images/keyboard.webp" alt="AK-900 Wired Keyboard">
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-title">AK-900 Wired Keyboard</h4>
+                            <div class="product-price">
+                                <span class="current-price">$960</span>
+                                <span class="original-price">$1160</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star-half-stroke"></i>
+                                </div>
+                                <span class="rating-count">(75)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-badge">-30%</div>
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                            <button class="action-btn quick-view-btn"><i class="fa-regular fa-eye"></i></button>
+                        </div>
+                        <div class="product-image">
+                            <img src="images/monitor.webp" alt="IPS LCD Gaming Monitor">
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-title">IPS LCD Gaming Monitor</h4>
+                            <div class="product-price">
+                                <span class="current-price">$370</span>
+                                <span class="original-price">$400</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="rating-count">(99)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                            <button class="action-btn quick-view-btn"><i class="fa-regular fa-eye"></i></button>
+                        </div>
+                        <div class="product-image">
+                            <img src="images/chair.webp" alt="S-Series Comfort Chair">
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-title">S-Series Comfort Chair</h4>
+                            <div class="product-price">
+                                <span class="current-price">$375</span>
+                                <span class="original-price">$400</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                <span class="rating-count">(99)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="view-all-btn-container">
+                    <a href="#" class="view-all-btn">View All Products</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories-section section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-title">
+                        <div class="title-indicator"></div>
+                        <h2>Categories</h2>
+                    </div>
+                    <h3>Browse By Category</h3>
+                    <div class="section-controls">
+                        <button class="control-btn prev"><i class="fa-solid fa-arrow-left"></i></button>
+                        <button class="control-btn next"><i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="categories-grid">
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fa-solid fa-mobile-screen"></i>
+                        </div>
+                        <h4>Phones</h4>
+                    </div>
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fa-solid fa-desktop"></i>
+                        </div>
+                        <h4>Computers</h4>
+                    </div>
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <h4>SmartWatch</h4>
+                    </div>
+                    <div class="category-card active">
+                        <div class="category-icon">
+                            <i class="fa-solid fa-camera"></i>
+                        </div>
+                        <h4>Camera</h4>
+                    </div>
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fa-solid fa-headphones"></i>
+                        </div>
+                        <h4>HeadPhones</h4>
+                    </div>
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fa-solid fa-gamepad"></i>
+                        </div>
+                        <h4>Gaming</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best Selling Products Section -->
+        <section class="best-selling-section section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-title">
+                        <div class="title-indicator"></div>
+                        <h2>This Month</h2>
+                    </div>
+                    <h3>Best Selling Products</h3>
+                    <div class="view-all-link">
+                        <a href="#" class="view-all-btn">View All</a>
+                    </div>
+                </div>
+
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                            <button class="action-btn quick-view-btn"><i class="fa-regular fa-eye"></i></button>
+                        </div>
+                        <div class="product-image">
+                            <img src="images/jacket.webp" alt="The North Coat">
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-title">The North Coat</h4>
+                            <div class="product-price">
+                                <span class="current-price">$260</span>
+                                <span class="original-price">$360</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="rating-count">(65)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                            <button class="action-btn quick-view-btn"><i class="fa-regular fa-eye"></i></button>
+                        </div>
+                        <div class="product-image">
+                            <img src="images/bag.webp" alt="Gucci Duffle Bag">
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-title">Gucci Duffle Bag</h4>
+                            <div class="product-price">
+                                <span class="current-price">$960</span>
+                                <span class="original-price">$1160</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                <span class="rating-count">(65)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                            <button class="action-btn quick-view-btn"><i class="fa-regular fa-eye"></i></button>
+                        </div>
+                        <div class="product-image">
+                            <img src="images/rgb-cooler.webp" alt="RGB liquid CPU Cooler">
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-title">RGB liquid CPU Cooler</h4>
+                            <div class="product-price">
+                                <span class="current-price">$160</span>
+                                <span class="original-price">$170</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="rating-count">(65)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                            <button class="action-btn quick-view-btn"><i class="fa-regular fa-eye"></i></button>
+                        </div>
+                        <div class="product-image">
+                            <img src="images/chair-yellow.webp" alt="Small BookShelf">
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-title">Small BookShelf</h4>
+                            <div class="product-price">
+                                <span class="current-price">$360</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star-half-stroke"></i>
+                                </div>
+                                <span class="rating-count">(65)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Music Experience Banner -->
+        <section class="music-banner-section section-padding">
+            <div class="container">
+                <div class="music-banner">
+                    <div class="banner-content">
+                        <div class="category-tag">Categories</div>
+                        <h2>Enhance Your Music Experience</h2>
+                        <div class="feature-icons">
+                            <div class="feature-icon">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div class="feature-icon">
+                                <i class="fa-solid fa-battery-full"></i>
+                            </div>
+                            <div class="feature-icon">
+                                <i class="fa-solid fa-volume-high"></i>
+                            </div>
+                            <div class="feature-icon">
+                                <i class="fa-solid fa-microphone"></i>
+                            </div>
+                        </div>
+                        <a href="#" class="buy-now-btn">Buy Now!</a>
+                    </div>
+                    <div class="banner-image">
+                        <img src="images/speaker.webp" alt="JBL Speaker">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Explore Products Section -->
+        <section class="explore-products-section section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-title">
+                        <div class="title-indicator"></div>
+                        <h2>Our Products</h2>
+                    </div>
+                    <h3>Explore Our Products</h3>
+                    <div class="section-controls">
+                        <button class="control-btn prev"><i class="fa-solid fa-arrow-left"></i></button>
+                        <button class="control-btn next"><i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="products-grid">
+                    <!-- First row -->
+                    <div class="product-card">
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                            <button class="action-btn quick-view-btn"><i class="fa-regular fa-eye"></i></button>
+                        </div>
+                        <div class="product-image">
+                            <img src="images/ghost-mask.webp" alt="Breed Dry Dog Food">
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-title">Breed Dry Dog Food</h4>
+                            <div class="product-price">
+                                <span class="current-price">$100</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="rating-count">(35)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                            <button class="action-btn quick-view-btn"><i class="fa-regular fa-eye"></i></button>
+                        </div>
+                        <div class="product-image">
+                            <img src="images/camera.webp" alt="CANON EOS DSLR Camera">
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-title">CANON EOS DSLR Camera</h4>
+                            <div class="product-price">
+                                <span class="current-price">$360</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                <span class="rating-count">(95)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                            <button class="action-btn quick-view-btn"><i class="fa-regular fa-eye"></i></button>
+                        </div>
+                        <div class="product-image">
+                            <img src="images/laptop.webp" alt="ASUS FHD Gaming Laptop">
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-title">ASUS FHD Gaming Laptop</h4>
+                            <div class="product-price">
+                                <span class="current-price">$700</span>
+                                <span class="original-price">$800</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="rating-count">(325)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                            <button class="action-btn quick-view-btn"><i class="fa-regular fa-eye"></i></button>
+                        </div>
+                        <div class="product-image">
+                            <img src="images/cosmetics.webp" alt="Curology Product Set">
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-title">Curology Product Set</h4>
+                            <div class="product-price">
+                                <span class="current-price">$500</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                <span class="rating-count">(145)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Second row -->
+                    <div class="product-card">
+                        <div class="product-badge new-badge">NEW</div>
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                            <button class="action-btn quick-view-btn"><i class="fa-regular fa-eye"></i></button>
+                        </div>
+                        <div class="product-image">
+                            <img src="images/car.webp" alt="Kids Electric Car">
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-title">Kids Electric Car</h4>
+                            <div class="product-price">
+                                <span class="current-price">$960</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="rating-count">(65)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-badge sale-badge">SALE</div>
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                            <button class="action-btn quick-view-btn"><i class="fa-regular fa-eye"></i></button>
+                        </div>
+                        <div class="product-image">
+                            <img src="images/shoes.webp" alt="Jr. Soccer Cleats">
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-title">Jr. Soccer Cleats</h4>
+                            <div class="product-price">
+                                <span class="current-price">$160</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star-half-stroke"></i>
+                                </div>
+                                <span class="rating-count">(35)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                            <button class="action-btn quick-view-btn"><i class="fa-regular fa-eye"></i></button>
+                        </div>
+                        <div class="product-image">
+                            <img src="images/gamepad-black.webp" alt="GP11 Shooter USB Gamepad">
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-title">GP11 Shooter USB Gamepad</h4>
+                            <div class="product-price">
+                                <span class="current-price">$660</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                <span class="rating-count">(55)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-actions">
+                            <button class="action-btn wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                            <button class="action-btn quick-view-btn"><i class="fa-regular fa-eye"></i></button>
+                        </div>
+                        <div class="product-image">
+                            <img src="images/jacket-green.webp" alt="Quilted Satin Jacket">
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-title">Quilted Satin Jacket</h4>
+                            <div class="product-price">
+                                <span class="current-price">$660</span>
+                            </div>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                <span class="rating-count">(55)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="view-all-btn-container">
+                    <a href="#" class="view-all-btn">View All Products</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Arrival Section -->
+        <section class="new-arrival-section section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-title">
+                        <div class="title-indicator"></div>
+                        <h2>Featured</h2>
+                    </div>
+                    <h3>New Arrival</h3>
+                </div>
+
+                <div class="featured-grid">
+                    <div class="featured-item large">
+                        <div class="featured-content">
+                            <h3>PlayStation 5</h3>
+                            <p>Black and White version of the PS5 coming out on sale.</p>
+                            <a href="#" class="shop-now-link">Shop Now</a>
+                        </div>
+                        <div class="featured-image">
+                            <img src="images/ps5.webp" alt="PlayStation 5">
+                        </div>
+                    </div>
+                    <div class="featured-item small">
+                        <div class="featured-content">
+                            <h3>Women's Collections</h3>
+                            <p>Featured woman collections that give you another vibe.</p>
+                            <a href="#" class="shop-now-link">Shop Now</a>
+                        </div>
+                        <div class="featured-image">
+                            <img src="images/women.webp" alt="Women's Collections">
+                        </div>
+                    </div>
+                    <div class="featured-item small">
+                        <div class="featured-content">
+                            <h3>Speakers</h3>
+                            <p>Amazon wireless speakers</p>
+                            <a href="#" class="shop-now-link">Shop Now</a>
+                        </div>
+                        <div class="featured-image">
+                            <img src="images/speaker-small.webp" alt="Speakers">
+                        </div>
+                    </div>
+                    <div class="featured-item small">
+                        <div class="featured-content">
+                            <h3>Perfume</h3>
+                            <p>GUCCI INTENSE OUD EDP</p>
+                            <a href="#" class="shop-now-link">Shop Now</a>
+                        </div>
+                        <div class="featured-image">
+                            <img src="images/perfume.webp" alt="Perfume">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services-section section-padding">
+            <div class="container">
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-truck-fast"></i>
+                        </div>
+                        <h4>FREE AND FAST DELIVERY</h4>
+                        <p>Free delivery for all orders over $140</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-headset"></i>
+                        </div>
+                        <h4>24/7 CUSTOMER SERVICE</h4>
+                        <p>Friendly 24/7 customer support</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h4>MONEY BACK GUARANTEE</h4>
+                        <p>We return money within 30 days</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <a href="index.html">Exclusive</a>
+                    </div>
+                    <h4>Subscribe</h4>
+                    <p>Get 10% off your first order</p>
+                    <div class="subscribe-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <p>111 Bijoy sarani, Dhaka, DH 1515, Bangladesh.</p>
+                    <p>exclusive@gmail.com</p>
+                    <p>+88015-88888-9999</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Account</h4>
+                    <ul>
+                        <li><a href="account.html">My Account</a></li>
+                        <li><a href="login.html">Login / Register</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                        <li><a href="wishlist.html">Wishlist</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Link</h4>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms Of Use</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Download App</h4>
+                    <p>Save $3 with App New User Only</p>
+                    <div class="app-download">
+                        <div class="qr-code">
+                            <img src="images/qrcode.webp" alt="QR Code">
+                        </div>
+                        <div class="app-links">
+                            <a href="#" class="app-link">
+                                <img src="images/play-store.webp" alt="Google Play">
+                            </a>
+                            <a href="#" class="app-link">
+                                <img src="images/app-store.webp" alt="App Store">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; Copyright Rimel 2022. All right reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

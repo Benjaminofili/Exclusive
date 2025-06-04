@@ -1,0 +1,273 @@
+/* Checkout Styles */
+.checkout-section h1 {
+  font-size: 36px;
+  font-weight: 500;
+  margin-bottom: 48px;
+  color: #000;
+}
+
+.checkout-grid {
+  display: grid;
+  grid-template-columns: 1fr 427px;
+  gap: 173px;
+}
+
+.billing-form {
+  max-width: 470px;
+}
+
+.form-group {
+  margin-bottom: 32px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.4);
+  margin-bottom: 8px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 13px 16px;
+  border: none;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #000;
+}
+
+.form-group input:focus {
+  outline: none;
+  background-color: #ebebeb;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 24px;
+  height: 24px;
+  accent-color: #db4444;
+}
+
+.checkbox-group label {
+  margin-bottom: 0;
+  color: #000;
+  cursor: pointer;
+}
+
+.order-summary {
+  background: #fff;
+  padding: 32px 24px;
+  border-radius: 4px;
+  height: fit-content;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.item-info {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.item-info img {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+}
+
+.item-info span {
+  font-size: 16px;
+  color: #000;
+}
+
+.item-price {
+  font-size: 16px;
+  color: #000;
+}
+
+.order-totals {
+  border-top: 1px solid #e5e5e5;
+  padding-top: 16px;
+  margin-bottom: 32px;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  font-size: 16px;
+}
+
+.final-total {
+  font-weight: 600;
+  padding-top: 16px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.payment-methods {
+  margin-bottom: 32px;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.payment-option input[type="radio"] {
+  margin-right: 16px;
+  accent-color: #db4444;
+}
+
+.payment-option label {
+  flex: 1;
+  font-size: 16px;
+  color: #000;
+  cursor: pointer;
+}
+
+.payment-icons {
+  display: flex;
+  gap: 8px;
+}
+
+.payment-icons img {
+  height: 28px;
+  width: auto;
+}
+
+.coupon-section {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.coupon-section input {
+  flex: 1;
+  padding: 16px;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.apply-coupon-btn {
+  background-color: #db4444;
+  color: #fff;
+  border: none;
+  padding: 16px 48px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  white-space: nowrap;
+}
+
+.apply-coupon-btn:hover {
+  background-color: #b73e3e;
+}
+
+.place-order-btn {
+  width: 100%;
+  background-color: #db4444;
+  color: #fff;
+  border: none;
+  padding: 16px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.place-order-btn:hover {
+  background-color: #b73e3e;
+}
+
+/* Responsive Design for Checkout */
+@media (max-width: 1024px) {
+  .checkout-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .billing-form {
+    max-width: none;
+  }
+
+  .order-summary {
+    max-width: 470px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .checkout-section h1 {
+    font-size: 28px;
+    margin-bottom: 32px;
+  }
+
+  .order-summary {
+    padding: 24px 20px;
+  }
+
+  .item-info {
+    gap: 16px;
+  }
+
+  .item-info img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .coupon-section {
+    flex-direction: column;
+  }
+
+  .apply-coupon-btn {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkout-section h1 {
+    font-size: 24px;
+  }
+
+  .form-group {
+    margin-bottom: 24px;
+  }
+
+  .order-summary {
+    padding: 20px 16px;
+  }
+
+  .order-item {
+    margin-bottom: 24px;
+  }
+
+  .item-info span,
+  .item-price {
+    font-size: 14px;
+  }
+
+  .total-row {
+    font-size: 14px;
+  }
+
+  .place-order-btn {
+    padding: 12px;
+    font-size: 14px;
+  }
+}

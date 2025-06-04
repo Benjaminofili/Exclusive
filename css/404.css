@@ -1,0 +1,78 @@
+/* 404 Error Styles */
+.error-section {
+  text-align: center;
+  padding: 140px 0;
+}
+
+.error-content {
+  max-width: 829px;
+  margin: 0 auto;
+}
+
+.error-title {
+  font-size: 110px;
+  font-weight: 500;
+  color: #000;
+  margin-bottom: 40px;
+  line-height: 1.15;
+}
+
+.error-message {
+  font-size: 16px;
+  color: #000;
+  margin-bottom: 80px;
+  line-height: 1.5;
+}
+
+.back-home-btn {
+  background-color: #db4444;
+  color: #fff;
+  padding: 16px 48px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  display: inline-block;
+  transition: background-color 0.3s;
+}
+
+.back-home-btn:hover {
+  background-color: #b73e3e;
+}
+
+/* Responsive Design for 404 */
+@media (max-width: 768px) {
+  .error-section {
+    padding: 80px 0;
+  }
+
+  .error-title {
+    font-size: 80px;
+    margin-bottom: 30px;
+  }
+
+  .error-message {
+    font-size: 14px;
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .error-section {
+    padding: 60px 0;
+  }
+
+  .error-title {
+    font-size: 60px;
+    margin-bottom: 20px;
+  }
+
+  .error-message {
+    margin-bottom: 40px;
+  }
+
+  .back-home-btn {
+    padding: 12px 32px;
+    font-size: 14px;
+  }
+}

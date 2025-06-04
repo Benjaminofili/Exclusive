@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Exclusive</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/checkout.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <p>Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <a href="#" class="shop-now">ShopNow</a></p>
+        <div class="language-selector">
+            <span>English</span>
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">Exclusive</a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="What are you looking for?">
+                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                <a href="#" class="icon-btn wishlist-btn"><i class="fa-regular fa-heart"></i></a>
+                <a href="cart.html" class="icon-btn cart-btn"><i class="fa-solid fa-cart-shopping"></i><span class="badge">2</span></a>
+                <a href="account.html" class="icon-btn account-btn"><i class="fa-regular fa-user"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Breadcrumb -->
+        <div class="breadcrumb-container">
+            <div class="container">
+                <ul class="breadcrumb">
+                    <li><a href="index.html">Account</a></li>
+                    <li><a href="account.html">My Account</a></li>
+                    <li><a href="product.html">Product</a></li>
+                    <li><a href="cart.html">View Cart</a></li>
+                    <li>CheckOut</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Checkout Section -->
+        <section class="checkout-section section-padding">
+            <div class="container">
+                <h1>Billing Details</h1>
+                <div class="checkout-grid">
+                    <div class="billing-form">
+                        <form>
+                            <div class="form-group">
+                                <label for="firstName">First Name*</label>
+                                <input type="text" id="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="companyName">Company Name</label>
+                                <input type="text" id="companyName">
+                            </div>
+                            <div class="form-group">
+                                <label for="streetAddress">Street Address*</label>
+                                <input type="text" id="streetAddress" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="apartment">Apartment, floor, etc. (optional)</label>
+                                <input type="text" id="apartment">
+                            </div>
+                            <div class="form-group">
+                                <label for="townCity">Town/City*</label>
+                                <input type="text" id="townCity" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phoneNumber">Phone Number*</label>
+                                <input type="tel" id="phoneNumber" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="emailAddress">Email Address*</label>
+                                <input type="email" id="emailAddress" required>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="saveInfo">
+                                <label for="saveInfo">Save this information for faster check-out next time</label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="order-summary">
+                        <div class="order-item">
+                            <div class="item-info">
+                                <img src="images/monitor.webp" alt="LCD Monitor">
+                                <span>LCD Monitor</span>
+                            </div>
+                            <span class="item-price">$650</span>
+                        </div>
+                        <div class="order-item">
+                            <div class="item-info">
+                                <img src="images/gamepad-red.webp" alt="HI Gamepad">
+                                <span>HI Gamepad</span>
+                            </div>
+                            <span class="item-price">$1100</span>
+                        </div>
+                        <div class="order-totals">
+                            <div class="total-row">
+                                <span>Subtotal:</span>
+                                <span>$1750</span>
+                            </div>
+                            <div class="total-row">
+                                <span>Shipping:</span>
+                                <span>Free</span>
+                            </div>
+                            <div class="total-row final-total">
+                                <span>Total:</span>
+                                <span>$1750</span>
+                            </div>
+                        </div>
+                        <div class="payment-methods">
+                            <div class="payment-option">
+                                <input type="radio" id="bank" name="payment" value="bank">
+                                <label for="bank">Bank</label>
+                                <div class="payment-icons">
+                                    <img src="images/visa.webp" alt="Visa">
+                                    <img src="images/mastercard.webp" alt="Mastercard">
+                                    <img src="images/paypal.webp" alt="PayPal">
+                                </div>
+                            </div>
+                            <div class="payment-option">
+                                <input type="radio" id="cash" name="payment" value="cash" checked>
+                                <label for="cash">Cash on delivery</label>
+                            </div>
+                        </div>
+                        <div class="coupon-section">
+                            <input type="text" placeholder="Coupon Code">
+                            <button class="apply-coupon-btn">Apply Coupon</button>
+                        </div>
+                        <button class="place-order-btn">Place Order</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <a href="index.html">Exclusive</a>
+                    </div>
+                    <h4>Subscribe</h4>
+                    <p>Get 10% off your first order</p>
+                    <div class="subscribe-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <p>111 Bijoy sarani, Dhaka, DH 1515, Bangladesh.</p>
+                    <p>exclusive@gmail.com</p>
+                    <p>+88015-88888-9999</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Account</h4>
+                    <ul>
+                        <li><a href="account.html">My Account</a></li>
+                        <li><a href="login.html">Login / Register</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                        <li><a href="wishlist.html">Wishlist</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Link</h4>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms Of Use</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Download App</h4>
+                    <p>Save $3 with App New User Only</p>
+                    <div class="app-download">
+                        <div class="qr-code">
+                            <img src="images/qrcode.webp" alt="QR Code">
+                        </div>
+                        <div class="app-links">
+                            <a href="#" class="app-link">
+                                <img src="images/play-store.webp" alt="Google Play">
+                            </a>
+                            <a href="#" class="app-link">
+                                <img src="images/app-store.webp" alt="App Store">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; Copyright Rimel 2022. All right reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
