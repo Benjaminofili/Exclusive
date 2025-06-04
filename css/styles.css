@@ -18,6 +18,34 @@ body {
   padding: 0 15px;
 }
 
+@media (max-width: 1200px) {
+  .container {
+    max-width: 960px;
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    max-width: 720px;
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 540px;
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    max-width: 100%;
+    padding: 0 15px;
+  }
+}
+
 .section-padding {
   padding: 70px 0;
 }
@@ -493,18 +521,10 @@ body {
 }
 
 @media (max-width: 768px) {
-  .announcement-bar {
-    font-size: 12px;
-    padding: 8px 0;
-  }
-
-  .language-selector {
-    right: 20px;
-  }
-
   .header-container {
     flex-direction: column;
     align-items: stretch;
+    gap: 20px;
   }
 
   .main-nav {
@@ -521,10 +541,20 @@ body {
   .header-actions {
     justify-content: center;
     order: 2;
+    gap: 16px;
   }
 
   .search-bar input {
-    width: 180px;
+    width: 200px;
+  }
+
+  .announcement-bar {
+    font-size: 12px;
+    padding: 8px 0;
+  }
+
+  .language-selector {
+    right: 20px;
   }
 
   .section-header {
@@ -544,6 +574,19 @@ body {
 }
 
 @media (max-width: 480px) {
+  .header-actions {
+    gap: 12px;
+  }
+
+  .search-bar input {
+    width: 150px;
+    font-size: 12px;
+  }
+
+  .icon-btn {
+    font-size: 20px;
+  }
+
   .container {
     padding: 0 15px;
   }
@@ -558,19 +601,6 @@ body {
 
   .main-nav ul {
     gap: 12px;
-  }
-
-  .header-actions {
-    gap: 16px;
-  }
-
-  .search-bar input {
-    width: 150px;
-    font-size: 11px;
-  }
-
-  .icon-btn {
-    font-size: 20px;
   }
 
   .section-header h3 {

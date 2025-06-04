@@ -79,9 +79,9 @@
 
 .form-actions {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
 }
 
 .auth-btn {
@@ -94,6 +94,8 @@
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.3s;
+  width: 100%;
+  margin-bottom: 16px;
 }
 
 .auth-btn:hover {
@@ -156,8 +158,16 @@
   border-bottom-color: #db4444;
 }
 
-/* Responsive Design for Auth */
-@media (max-width: 1024px) {
+/* Enhanced Responsive Design for Auth */
+@media (max-width: 1200px) {
+  .auth-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    max-width: 1000px;
+  }
+}
+
+@media (max-width: 992px) {
   .auth-container {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -167,6 +177,7 @@
   .auth-image {
     order: 2;
     padding: 40px;
+    max-height: 400px;
   }
 
   .auth-form-container {
@@ -177,68 +188,89 @@
 @media (max-width: 768px) {
   .auth-section {
     padding: 40px 0;
+    min-height: calc(100vh - 160px);
   }
 
   .auth-container {
     gap: 30px;
+    padding: 0 20px;
   }
 
   .auth-image {
     padding: 30px;
+    max-height: 300px;
   }
 
   .auth-form h1 {
     font-size: 28px;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
   }
 
   .auth-form p {
-    margin-bottom: 32px;
+    margin-bottom: 40px;
+    font-size: 14px;
   }
 
   .form-group {
     margin-bottom: 32px;
   }
-
-  .form-actions {
-    flex-direction: column;
-    gap: 16px;
-    align-items: stretch;
-  }
-
-  .auth-btn {
-    width: 100%;
-  }
-
-  .google-btn {
-    margin-bottom: 24px;
-  }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 576px) {
+  .auth-container {
+    padding: 0 15px;
+  }
+
   .auth-form h1 {
     font-size: 24px;
+    margin-bottom: 16px;
   }
 
   .auth-form p {
     font-size: 14px;
+    margin-bottom: 32px;
   }
 
   .auth-image {
     padding: 20px;
+    max-height: 250px;
   }
 
   .form-group input {
     font-size: 14px;
+    padding: 12px 0;
   }
 
   .auth-btn,
   .google-btn {
-    padding: 12px;
+    padding: 14px;
     font-size: 14px;
   }
 
   .auth-footer {
     font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-form-container {
+    padding: 0 10px;
+  }
+
+  .auth-form {
+    max-width: 100%;
+  }
+
+  .form-group {
+    margin-bottom: 28px;
+  }
+
+  .auth-btn {
+    padding: 12px;
+  }
+
+  .google-btn {
+    padding: 12px;
+    gap: 12px;
   }
 }
