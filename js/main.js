@@ -21,8 +21,8 @@ function initializeCountdown() {
   const countdownElements = {
     days: document.getElementById("days"),
     hours: document.getElementById("hours"),
-    minutes: document.getElementById("minutes"),
-    seconds: document.getElementById("seconds"),
+    minutes: document.getElementById("minutes"),\
+    seconds: document.getElementById("seconds\"],
   }
 
   // Check if countdown elements exist
@@ -250,17 +250,48 @@ function initializeWishlist() {
   }
 }
 
-// Product Actions
+// Add this function to handle product navigation
+function goToProduct(productSlug) {
+  const productRoutes = {
+    "gucci-bag": "product.html?id=gucci-bag",
+    "rgb-cooler": "product.html?id=rgb-cooler",
+    gamepad: "product.html?id=gamepad",
+    jacket: "product.html?id=jacket",
+    laptop: "product.html?id=laptop",
+    monitor: "product.html?id=monitor",
+    "gamepad-havit": "product.html?id=gamepad-havit",
+    keyboard: "product.html?id=keyboard",
+  }
+
+  const route = productRoutes[productSlug] || "product.html"
+  window.location.href = route
+}
+
+// Update the product actions initialization to include navigation
 function initializeProductActions() {
   const quickViewBtns = document.querySelectorAll(".quick-view-btn")
   const addToCartBtns = document.querySelectorAll(".add-to-cart-btn")
+  const productImages = document.querySelectorAll(".product-image")
+
+  // Add click handlers for product images
+  productImages.forEach((image) => {
+    image.addEventListener("click", (e) => {
+      const productCard = image.closest(".product-card")
+      if (productCard) {
+        const productId = productCard.dataset.productId || "default"
+        goToProduct(productId)
+      }
+    })
+  })
 
   quickViewBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault()
+      e.stopPropagation()
       const productCard = btn.closest(".product-card")
       if (productCard) {
-        openQuickView(productCard)
+        const productId = productCard.dataset.productId || "default"
+        goToProduct(productId)
       }
     })
   })
@@ -268,6 +299,7 @@ function initializeProductActions() {
   addToCartBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault()
+      e.stopPropagation()
       const productCard = btn.closest(".product-card")
       if (productCard) {
         addToCart(productCard)
@@ -550,8 +582,6 @@ function initializeCategorySlider() {
     }
   })
 }
-
-
 
 // Expose timer controls globally for debugging
 window.timerControls = {
