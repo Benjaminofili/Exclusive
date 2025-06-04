@@ -7,9 +7,15 @@ document.addEventListener("DOMContentLoaded", () => {
   initializeSearch()
   initializeWishlist()
   initializeProductActions()
+  initializeAccountDropdown()
 })
 
-// Countdown Timer
+// Timer state
+let timerInterval = null
+let timerRunning = false
+let targetTime = null
+
+// Countdown Timer with Controls
 function initializeCountdown() {
   const countdownElements = {
     days: document.getElementById("days"),
@@ -18,16 +24,24 @@ function initializeCountdown() {
     seconds: document.getElementById("seconds"),
   }
 
+  const startBtn = document.getElementById("startTimer")
+  const pauseBtn = document.getElementById("pauseTimer")
+  const resetBtn = document.getElementById("resetTimer")
+
   // Check if countdown elements exist
   if (!countdownElements.days) return
 
-  function updateCountdown() {
-    // Set target date (3 days, 23 hours, 19 minutes, 56 seconds from now)
+  // Set initial target time (3 days, 23 hours, 19 minutes, 56 seconds from now)
+  function setInitialTime() {
     const now = new Date().getTime()
-    const targetDate = now + 3 * 24 * 60 * 60 * 1000 + 23 * 60 * 60 * 1000 + 19 * 60 * 1000 + 56 * 1000
+    targetTime = now + 3 * 24 * 60 * 60 * 1000 + 23 * 60 * 60 * 1000 + 19 * 60 * 1000 + 56 * 1000
+  }
+
+  function updateCountdown() {
+    if (!targetTime) return
 
     const currentTime = new Date().getTime()
-    const timeLeft = targetDate - currentTime
+    const timeLeft = targetTime - currentTime
 
     if (timeLeft > 0) {
       const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24))
@@ -39,12 +53,96 @@ function initializeCountdown() {
       countdownElements.hours.textContent = hours.toString().padStart(2, "0")
       countdownElements.minutes.textContent = minutes.toString().padStart(2, "0")
       countdownElements.seconds.textContent = seconds.toString().padStart(2, "0")
+    } else {
+      // Timer finished
+      stopTimer()
+      showNotification("Timer finished!")
     }
   }
 
-  // Update countdown every second
-  setInterval(updateCountdown, 1000)
-  updateCountdown() // Initial call
+  function startTimer() {
+    if (!timerRunning) {
+      if (!targetTime) setInitialTime()
+      timerInterval = setInterval(updateCountdown, 1000)
+      timerRunning = true
+      updateButtonStates()
+      showNotification("Timer started!")
+    }
+  }
+
+  function pauseTimer() {
+    if (timerRunning) {
+      clearInterval(timerInterval)
+      timerRunning = false
+      updateButtonStates()
+      showNotification("Timer paused!")
+    }
+  }
+
+  function resetTimer() {
+    clearInterval(timerInterval)
+    timerRunning = false
+    setInitialTime()
+    updateCountdown()
+    updateButtonStates()
+    showNotification("Timer reset!")
+  }
+
+  function stopTimer() {
+    clearInterval(timerInterval)
+    timerRunning = false
+    updateButtonStates()
+  }
+
+  function updateButtonStates() {
+    if (startBtn) {
+      startBtn.disabled = timerRunning
+      startBtn.textContent = timerRunning ? "Running..." : "Start"
+    }
+    if (pauseBtn) {
+      pauseBtn.disabled = !timerRunning
+    }
+    if (resetBtn) {
+      resetBtn.disabled = false
+    }
+  }
+
+  // Event listeners
+  if (startBtn) startBtn.addEventListener("click", startTimer)
+  if (pauseBtn) pauseBtn.addEventListener("click", pauseTimer)
+  if (resetBtn) resetBtn.addEventListener("click", resetTimer)
+
+  // Initialize
+  setInitialTime()
+  updateCountdown()
+  updateButtonStates()
+}
+
+// Account Dropdown
+function initializeAccountDropdown() {
+  const accountBtn = document.getElementById("accountBtn")
+  const dropdown = document.getElementById("accountDropdown")
+
+  if (!accountBtn || !dropdown) return
+
+  accountBtn.addEventListener("click", (e) => {
+    e.preventDefault()
+    dropdown.classList.toggle("show")
+  })
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!accountBtn.contains(e.target) && !dropdown.contains(e.target)) {
+      dropdown.classList.remove("show")
+    }
+  })
+
+  // Close dropdown when pressing escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      dropdown.classList.remove("show")
+    }
+  })
 }
 
 // Hero Slider
@@ -115,6 +213,7 @@ function initializeSearch() {
     if (query) {
       // In a real application, this would perform an actual search
       console.log("Searching for:", query)
+      showNotification(`Searching for: ${query}`)
       // Redirect to search results page
       // window.location.href = `search.html?q=${encodeURIComponent(query)}`;
     }
@@ -428,3 +527,11 @@ document.head.appendChild(style)
 
 // Initialize cart count on page load
 updateCartCount()
+
+// Expose timer controls globally for debugging
+window.timerControls = {
+  start: () => document.getElementById("startTimer")?.click(),
+  pause: () => document.getElementById("pauseTimer")?.click(),
+  reset: () => document.getElementById("resetTimer")?.click(),
+  getState: () => ({ running: timerRunning, targetTime }),
+}
