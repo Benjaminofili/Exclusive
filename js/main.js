@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initializeWishlist()
   initializeProductActions()
   initializeAccountDropdown()
+  initializeCategorySlider() // Add this line
 })
 
 // Timer state
@@ -15,7 +16,7 @@ let timerInterval = null
 let timerRunning = false
 let targetTime = null
 
-// Countdown Timer with Controls
+// Countdown Timer with Auto Start
 function initializeCountdown() {
   const countdownElements = {
     days: document.getElementById("days"),
@@ -23,10 +24,6 @@ function initializeCountdown() {
     minutes: document.getElementById("minutes"),
     seconds: document.getElementById("seconds"),
   }
-
-  const startBtn = document.getElementById("startTimer")
-  const pauseBtn = document.getElementById("pauseTimer")
-  const resetBtn = document.getElementById("resetTimer")
 
   // Check if countdown elements exist
   if (!countdownElements.days) return
@@ -56,7 +53,7 @@ function initializeCountdown() {
     } else {
       // Timer finished
       stopTimer()
-      showNotification("Timer finished!")
+      showNotification("Flash sale ended!")
     }
   }
 
@@ -65,57 +62,18 @@ function initializeCountdown() {
       if (!targetTime) setInitialTime()
       timerInterval = setInterval(updateCountdown, 1000)
       timerRunning = true
-      updateButtonStates()
-      showNotification("Timer started!")
     }
-  }
-
-  function pauseTimer() {
-    if (timerRunning) {
-      clearInterval(timerInterval)
-      timerRunning = false
-      updateButtonStates()
-      showNotification("Timer paused!")
-    }
-  }
-
-  function resetTimer() {
-    clearInterval(timerInterval)
-    timerRunning = false
-    setInitialTime()
-    updateCountdown()
-    updateButtonStates()
-    showNotification("Timer reset!")
   }
 
   function stopTimer() {
     clearInterval(timerInterval)
     timerRunning = false
-    updateButtonStates()
   }
 
-  function updateButtonStates() {
-    if (startBtn) {
-      startBtn.disabled = timerRunning
-      startBtn.textContent = timerRunning ? "Running..." : "Start"
-    }
-    if (pauseBtn) {
-      pauseBtn.disabled = !timerRunning
-    }
-    if (resetBtn) {
-      resetBtn.disabled = false
-    }
-  }
-
-  // Event listeners
-  if (startBtn) startBtn.addEventListener("click", startTimer)
-  if (pauseBtn) pauseBtn.addEventListener("click", pauseTimer)
-  if (resetBtn) resetBtn.addEventListener("click", resetTimer)
-
-  // Initialize
+  // Initialize and start automatically
   setInitialTime()
   updateCountdown()
-  updateButtonStates()
+  startTimer()
 }
 
 // Account Dropdown
@@ -528,10 +486,78 @@ document.head.appendChild(style)
 // Initialize cart count on page load
 updateCartCount()
 
+// Category Slider
+function initializeCategorySlider() {
+  const prevBtn = document.querySelector(".categories-section .control-btn.prev")
+  const nextBtn = document.querySelector(".categories-section .control-btn.next")
+  const categoriesGrid = document.querySelector(".categories-grid")
+
+  if (!prevBtn || !nextBtn || !categoriesGrid) return
+
+  let currentPosition = 0
+  const totalCategories = categoriesGrid.children.length
+  const visibleCategories = getVisibleCategoriesCount()
+  const maxPosition = Math.max(0, totalCategories - visibleCategories)
+
+  function getVisibleCategoriesCount() {
+    // Determine how many categories to show based on screen width
+    if (window.innerWidth >= 1200) return 6
+    if (window.innerWidth >= 768) return 4
+    if (window.innerWidth >= 480) return 3
+    return 2
+  }
+
+  function updateCategorySlider() {
+    // Update the transform to show the current position
+    categoriesGrid.style.transform = `translateX(-${currentPosition * (100 / visibleCategories)}%)`
+
+    // Update button states
+    prevBtn.disabled = currentPosition === 0
+    nextBtn.disabled = currentPosition >= maxPosition
+  }
+
+  function handlePrevClick() {
+    if (currentPosition > 0) {
+      currentPosition--
+      updateCategorySlider()
+    }
+  }
+
+  function handleNextClick() {
+    if (currentPosition < maxPosition) {
+      currentPosition++
+      updateCategorySlider()
+    }
+  }
+
+  // Add event listeners
+  prevBtn.addEventListener("click", handlePrevClick)
+  nextBtn.addEventListener("click", handleNextClick)
+
+  // Initialize slider
+  updateCategorySlider()
+
+  // Update on window resize
+  window.addEventListener("resize", () => {
+    const newVisibleCount = getVisibleCategoriesCount()
+    if (newVisibleCount !== visibleCategories) {
+      // Recalculate visible categories and max position
+      const visibleCategories = newVisibleCount
+      const maxPosition = Math.max(0, totalCategories - visibleCategories)
+      // Ensure current position is valid
+      currentPosition = Math.min(currentPosition, maxPosition)
+      updateCategorySlider()
+    }
+  })
+}
+
 // Expose timer controls globally for debugging
 window.timerControls = {
-  start: () => document.getElementById("startTimer")?.click(),
-  pause: () => document.getElementById("pauseTimer")?.click(),
-  reset: () => document.getElementById("resetTimer")?.click(),
   getState: () => ({ running: timerRunning, targetTime }),
+  restart: () => {
+    stopTimer()
+    setInitialTime()
+    updateCountdown()
+    startTimer()
+  },
 }
