@@ -80,26 +80,26 @@ function initializeCountdown() {
 // Account Dropdown
 function initializeAccountDropdown() {
   const accountBtn = document.getElementById("accountBtn")
-  const dropdown = document.getElementById("accountDropdown")
+  const accountDropdown = document.getElementById("accountDropdown")
 
-  if (!accountBtn || !dropdown) return
+  if (!accountBtn || !accountDropdown) return
 
   accountBtn.addEventListener("click", (e) => {
     e.preventDefault()
-    dropdown.classList.toggle("show")
+    accountDropdown.classList.toggle("show")
   })
 
   // Close dropdown when clicking outside
   document.addEventListener("click", (e) => {
-    if (!accountBtn.contains(e.target) && !dropdown.contains(e.target)) {
-      dropdown.classList.remove("show")
+    if (!accountBtn.contains(e.target) && !accountDropdown.contains(e.target)) {
+      accountDropdown.classList.remove("show")
     }
   })
 
   // Close dropdown when pressing escape
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
-      dropdown.classList.remove("show")
+      accountDropdown.classList.remove("show")
     }
   })
 }
