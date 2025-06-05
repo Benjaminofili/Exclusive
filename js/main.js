@@ -21,8 +21,8 @@ function initializeCountdown() {
   const countdownElements = {
     days: document.getElementById("days"),
     hours: document.getElementById("hours"),
-    minutes: document.getElementById("minutes"),\
-    seconds: document.getElementById("seconds\"],
+    minutes: document.getElementById("minutes"),
+    seconds: document.getElementById("seconds"),
   }
 
   // Check if countdown elements exist
