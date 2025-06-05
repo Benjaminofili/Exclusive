@@ -13,6 +13,7 @@
   gap: 70px;
   align-items: flex-start;
   margin-bottom: 80px;
+  width: 100%;
 }
 
 /* Product Images */
@@ -61,7 +62,6 @@
   align-items: center;
   justify-content: center;
   min-height: 600px;
-  margin-left: 30px;
 }
 
 .main-image img {
@@ -224,6 +224,7 @@
   align-items: center;
   gap: 16px;
   margin-bottom: 40px;
+  width: 100%;
 }
 
 .quantity-selector {
@@ -653,4 +654,10 @@
   .product-actions .wishlist-btn {
     align-self: center;
   }
+}
+
+.size-options input[type="radio"]:checked + .size-option {
+  background-color: #db4444;
+  color: #fff;
+  border-color: #db4444;
 }
