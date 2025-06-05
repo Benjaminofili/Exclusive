@@ -192,9 +192,14 @@ function initializeWishlist() {
 
   wishlistBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
-      e.preventDefault()
       const productCard = btn.closest(".product-card")
-      if (!productCard) return
+      if (!productCard) {
+        // Allow default navigation for header wishlist icon
+        return
+      }
+
+      // Only prevent default for product card wishlist buttons
+      e.preventDefault()
 
       const productId = productCard.dataset.productId || Math.random().toString(36).substr(2, 9)
       const productTitle = productCard.querySelector(".product-title")?.textContent
