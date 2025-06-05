@@ -12,7 +12,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 70px;
   align-items: flex-start;
-  margin-bottom: 140px;
+  margin-bottom: 80px;
 }
 
 /* Product Images */
@@ -25,6 +25,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 170px;
 }
 
 .thumbnail {
@@ -38,6 +39,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 2px solid transparent;
 }
 
 .thumbnail.active {
@@ -54,11 +56,12 @@
   flex: 1;
   background-color: #f5f5f5;
   border-radius: 4px;
-  padding: 60px;
+  padding: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 600px;
+  margin-left: 30px;
 }
 
 .main-image img {
@@ -81,8 +84,6 @@
   align-items: center;
   gap: 16px;
   margin-bottom: 16px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid #e5e5e5;
 }
 
 .stars {
@@ -103,20 +104,20 @@
 .stock-status {
   color: #00ff66;
   font-size: 14px;
+  margin-left: 16px;
   padding-left: 16px;
   border-left: 1px solid #e5e5e5;
 }
 
 .product-price {
   margin-bottom: 24px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid #e5e5e5;
 }
 
 .current-price {
   font-size: 24px;
   font-weight: 400;
   color: #000;
+  line-height: 1;
 }
 
 .product-description {
@@ -153,6 +154,7 @@
 .color-options {
   display: flex;
   gap: 12px;
+  align-items: center;
 }
 
 .color-options input[type="radio"] {
@@ -195,6 +197,7 @@
 .size-options {
   display: flex;
   gap: 16px;
+  align-items: center;
 }
 
 .size-options input[type="radio"] {
@@ -202,7 +205,7 @@
 }
 
 .size-option {
-  width: 32px;
+  min-width: 32px;
   height: 32px;
   border: 1px solid #808080;
   border-radius: 4px;
@@ -212,12 +215,7 @@
   font-size: 14px;
   cursor: pointer;
   transition: all 0.3s;
-}
-
-.size-options input[type="radio"]:checked + .size-option {
-  background-color: #db4444;
-  color: #fff;
-  border-color: #db4444;
+  padding: 0 8px;
 }
 
 /* Product Actions */
@@ -233,6 +231,7 @@
   border: 1px solid #808080;
   border-radius: 4px;
   overflow: hidden;
+  height: 44px;
 }
 
 .quantity-btn {
@@ -243,6 +242,9 @@
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .quantity-btn:hover {
@@ -258,6 +260,7 @@
   font-size: 16px;
   border-left: 1px solid #808080;
   border-right: 1px solid #808080;
+  outline: none;
 }
 
 .buy-now-btn {
