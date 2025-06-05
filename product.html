@@ -6,11 +6,9 @@
     <title>HAVIT HV-G92 Gamepad - Exclusive</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/product.css">
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Announcement Bar -->
     <div class="announcement-bar">
         <p>Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <a href="#" class="shop-now">ShopNow</a></p>
         <div class="language-selector">
@@ -19,7 +17,6 @@
         </div>
     </div>
 
-    <!-- Header -->
     <header class="main-header">
         <div class="container header-container">
             <div class="logo">
@@ -36,21 +33,16 @@
             <div class="header-actions">
                 <div class="search-bar">
                     <input type="text" placeholder="What are you looking for?">
-                    <button type="submit" title="Search">
-                        <span class="visually-hidden">Search</span>
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
+                    <button type="submit" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
-                <a href="#" class="icon-btn wishlist-btn" title="Wishlist"><i class="fa-regular fa-heart"></i></a>
+                <a href="wishlist.html" class="icon-btn wishlist-btn" title="Wishlist"><i class="fa-regular fa-heart"></i></a>
                 <a href="cart.html" class="icon-btn cart-btn" title="Cart"><i class="fa-solid fa-cart-shopping"></i></a>
-                <a href="account.html" class="icon-btn account-btn" title="Account"><i class="fa-regular fa-user"></i></a>
+                <a href="account.html" class="icon-btn account-btn active" title="Account"><i class="fa-regular fa-user"></i></a>
             </div>
         </div>
     </header>
 
-    <!-- Main Content -->
     <main>
-        <!-- Breadcrumb -->
         <div class="breadcrumb-container">
             <div class="container">
                 <ul class="breadcrumb">
@@ -61,32 +53,29 @@
             </div>
         </div>
 
-        <!-- Product Section -->
         <section class="product-section section-padding">
             <div class="container">
                 <div class="product-grid">
-                    <!-- Product Images -->
                     <div class="product-images">
                         <div class="thumbnail-images">
                             <div class="thumbnail active">
-                                <img src="images/gamepad-red.webp" alt="Gamepad thumbnail 1">
+                                <img src="images/ps5stand.webp" alt="Gamepad thumbnail 1" class="img-flip-x">
                             </div>
                             <div class="thumbnail">
-                                <img src="images/gamepad-red.webp" alt="Gamepad thumbnail 2">
+                                <img src="images/ps5up.webp" alt="Gamepad thumbnail 2">
                             </div>
                             <div class="thumbnail">
-                                <img src="images/gamepad-red.webp" alt="Gamepad thumbnail 3">
+                                <img src="images/ps5down.webp" alt="Gamepad thumbnail 3">
                             </div>
                             <div class="thumbnail">
-                                <img src="images/gamepad-red.webp" alt="Gamepad thumbnail 4">
+                                <img src="images/ps5side.webp" alt="Gamepad thumbnail 4">
                             </div>
                         </div>
                         <div class="main-image">
-                            <img src="images/gamepad-red.webp" alt="HAVIT HV-G92 Gamepad" id="mainProductImage">
+                            <img src="images/ps51.webp" alt="HAVIT HV-G92 Gamepad" id="mainProductImage">
                         </div>
                     </div>
 
-                    <!-- Product Info -->
                     <div class="product-info">
                         <h1>Havic HV G-92 Gamepad</h1>
                         <div class="product-rating">
@@ -104,18 +93,17 @@
                             <span class="current-price">$192.00</span>
                         </div>
                         <div class="product-description">
-                            <p>PlayStation 5 Controller Skin High quality vinyl with air channel adhesive for easy bubble free install & mess free removal Pressure sensitive.</p>
+                            <p>Experience immersive gaming with the Havic HV G-92 Gamepad, featuring ergonomic design and responsive controls.</p>
                         </div>
 
-                        <!-- Product Options -->
                         <div class="product-options">
                             <div class="color-selection">
                                 <label>Colours:</label>
                                 <div class="color-options">
-                                    <input type="radio" id="color1" name="color" value="blue" checked>
-                                    <label for="color1" class="color-option blue"></label>
-                                    <input type="radio" id="color2" name="color" value="red">
-                                    <label for="color2" class="color-option red"></label>
+                                    <input type="radio" id="color1" name="color" value="blue" checked title="Select Blue Color">
+                                    <label for="color1" class="color-option blue" title="Blue Color"></label>
+                                    <input type="radio" id="color2" name="color" value="red" title="Select Red Color">
+                                    <label for="color2" class="color-option red" title="Red Color"></label>
                                 </div>
                             </div>
 
@@ -136,11 +124,11 @@
                             </div>
                         </div>
 
-                        <!-- Quantity and Actions -->
-                        <div class="product-actions">
+                        <div class="main-product-actions">
                             <div class="quantity-selector">
                                 <button class="quantity-btn minus" type="button">-</button>
-                                <input type="number" value="2" min="1" max="99" class="quantity-input">
+                                <label for="product-quantity" class="visually-hidden">Quantity</label>
+                                <input id="product-quantity" type="number" value="2" min="1" max="99" class="quantity-input" placeholder="Qty" title="Product quantity">
                                 <button class="quantity-btn plus" type="button">+</button>
                             </div>
                             <button class="buy-now-btn">Buy Now</button>
@@ -149,7 +137,6 @@
                             </button>
                         </div>
 
-                        <!-- Delivery Info -->
                         <div class="delivery-info">
                             <div class="delivery-item">
                                 <div class="delivery-icon">
@@ -175,7 +162,6 @@
             </div>
         </section>
 
-        <!-- Related Items Section -->
         <section class="related-items-section section-padding">
             <div class="container">
                 <div class="section-header">
@@ -305,7 +291,6 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
@@ -373,7 +358,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; Copyright Rimel 2022. All right reserved</p>
+                <p>© Copyright Rimel 2022. All right reserved</p>
             </div>
         </div>
     </footer>
