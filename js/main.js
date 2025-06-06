@@ -1,20 +1,18 @@
-// Main JavaScript functionality
 document.addEventListener("DOMContentLoaded", () => {
   // Initialize all components
-  initializeCountdown()
-  initializeSlider()
-  initializeMobileMenu()
-  initializeSearch()
-  initializeWishlist()
-  initializeProductActions()
-  initializeAccountDropdown()
-  initializeCategorySlider() // Add this line
-})
+  initializeCountdown();
+  initializeSlider();
+  initializeMobileMenu();
+  initializeSearch();
+  initializeProductActions();
+  initializeAccountDropdown();
+  initializeCategorySlider();
+});
 
 // Timer state
-let timerInterval = null
-let timerRunning = false
-let targetTime = null
+let timerInterval = null;
+let timerRunning = false;
+let targetTime = null;
 
 // Countdown Timer with Auto Start
 function initializeCountdown() {
@@ -23,236 +21,311 @@ function initializeCountdown() {
     hours: document.getElementById("hours"),
     minutes: document.getElementById("minutes"),
     seconds: document.getElementById("seconds"),
-  }
+  };
 
   // Check if countdown elements exist
-  if (!countdownElements.days) return
+  if (!countdownElements.days) return;
 
   // Set initial target time (3 days, 23 hours, 19 minutes, 56 seconds from now)
   function setInitialTime() {
-    const now = new Date().getTime()
-    targetTime = now + 3 * 24 * 60 * 60 * 1000 + 23 * 60 * 60 * 1000 + 19 * 60 * 1000 + 56 * 1000
+    const now = new Date().getTime();
+    targetTime = now + 3 * 24 * 60 * 60 * 1000 + 23 * 60 * 60 * 1000 + 19 * 60 * 1000 + 56 * 1000;
   }
 
   function updateCountdown() {
-    if (!targetTime) return
+    if (!targetTime) return;
 
-    const currentTime = new Date().getTime()
-    const timeLeft = targetTime - currentTime
+    const currentTime = new Date().getTime();
+    const timeLeft = targetTime - currentTime;
 
     if (timeLeft > 0) {
-      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24))
-      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60))
-      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000)
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-      countdownElements.days.textContent = days.toString().padStart(2, "0")
-      countdownElements.hours.textContent = hours.toString().padStart(2, "0")
-      countdownElements.minutes.textContent = minutes.toString().padStart(2, "0")
-      countdownElements.seconds.textContent = seconds.toString().padStart(2, "0")
+      countdownElements.days.textContent = days.toString().padStart(2, "0");
+      countdownElements.hours.textContent = hours.toString().padStart(2, "0");
+      countdownElements.minutes.textContent = minutes.toString().padStart(2, "0");
+      countdownElements.seconds.textContent = seconds.toString().padStart(2, "0");
     } else {
       // Timer finished
-      stopTimer()
-      showNotification("Flash sale ended!")
+      stopTimer();
+      showNotification("Flash sale ended!");
     }
   }
 
   function startTimer() {
     if (!timerRunning) {
-      if (!targetTime) setInitialTime()
-      timerInterval = setInterval(updateCountdown, 1000)
-      timerRunning = true
+      if (!targetTime) setInitialTime();
+      timerInterval = setInterval(updateCountdown, 1000);
+      timerRunning = true;
     }
   }
 
   function stopTimer() {
-    clearInterval(timerInterval)
-    timerRunning = false
+    clearInterval(timerInterval);
+    timerRunning = false;
   }
 
   // Initialize and start automatically
-  setInitialTime()
-  updateCountdown()
-  startTimer()
+  setInitialTime();
+  updateCountdown();
+  startTimer();
 }
 
 // Account Dropdown
 function initializeAccountDropdown() {
-  const accountBtn = document.getElementById("accountBtn")
-  const accountDropdown = document.getElementById("accountDropdown")
+  const accountBtn = document.getElementById("accountBtn");
+  const accountDropdown = document.getElementById("accountDropdown");
 
-  if (!accountBtn || !accountDropdown) return
+  if (!accountBtn || !accountDropdown) return;
 
   accountBtn.addEventListener("click", (e) => {
-    e.preventDefault()
-    accountDropdown.classList.toggle("show")
-  })
+    e.preventDefault();
+    accountDropdown.classList.toggle("show");
+  });
 
   // Close dropdown when clicking outside
   document.addEventListener("click", (e) => {
     if (!accountBtn.contains(e.target) && !accountDropdown.contains(e.target)) {
-      accountDropdown.classList.remove("show")
+      accountDropdown.classList.remove("show");
     }
-  })
+  });
 
   // Close dropdown when pressing escape
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
-      accountDropdown.classList.remove("show")
+      accountDropdown.classList.remove("show");
     }
-  })
+  });
 }
 
 // Hero Slider
 function initializeSlider() {
-  const slides = document.querySelectorAll(".hero-slide")
-  const dots = document.querySelectorAll(".dot")
-  let currentSlide = 0
+  const slides = document.querySelectorAll(".hero-slide");
+  const dots = document.querySelectorAll(".dot");
+  let currentSlide = 0;
 
-  if (!slides.length === 0) return
+  if (!slides.length) return;
 
   function showSlide(index) {
     // Hide all slides
-    slides.forEach((slide) => slide.classList.remove("active"))
-    dots.forEach((dot) => dot.classList.remove("active"))
+    slides.forEach((slide) => slide.classList.remove("active"));
+    dots.forEach((dot) => dot.classList.remove("active"));
 
     // Show current slide
-    slides[index].classList.add("active")
-    if (dots[index]) dots[index].classList.add("active")
+    slides[index].classList.add("active");
+    if (dots[index]) dots[index].classList.add("active");
   }
 
   function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length
-    showSlide(currentSlide)
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
   }
 
   // Auto-advance slides every 5 seconds
-  setInterval(nextSlide, 5000)
+  setInterval(nextSlide, 5000);
 
   // Dot navigation
   dots.forEach((dot, index) => {
     dot.addEventListener("click", () => {
-      currentSlide = index
-      showSlide(currentSlide)
-    })
-  })
+      currentSlide = index;
+      showSlide(currentSlide);
+    });
+  });
 }
 
 // Mobile Menu
 function initializeMobileMenu() {
-  const mobileMenuBtn = document.querySelector(".mobile-menu-btn")
-  const mainNav = document.querySelector(".main-nav")
+  const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+  const mainNav = document.querySelector(".main-nav");
 
-  if (!mobileMenuBtn) return
+  if (!mobileMenuBtn) return;
 
   mobileMenuBtn.addEventListener("click", () => {
-    mainNav.classList.toggle("active")
-    mobileMenuBtn.classList.toggle("active")
-  })
+    mainNav.classList.toggle("active");
+    mobileMenuBtn.classList.toggle("active");
+  });
 
   // Close menu when clicking outside
   document.addEventListener("click", (e) => {
     if (!mainNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-      mainNav.classList.remove("active")
-      mobileMenuBtn.classList.remove("active")
+      mainNav.classList.remove("active");
+      mobileMenuBtn.classList.remove("active");
     }
-  })
+  });
 }
 
 // Search Functionality
 function initializeSearch() {
-  const searchInput = document.querySelector(".search-bar input")
-  const searchBtn = document.querySelector(".search-bar button")
+  const searchInput = document.querySelector(".search-bar input");
+  const searchBtn = document.querySelector(".search-bar button");
 
-  if (!searchInput) return
+  if (!searchInput) return;
 
   function performSearch() {
-    const query = searchInput.value.trim()
+    const query = searchInput.value.trim();
     if (query) {
-      // In a real application, this would perform an actual search
-      console.log("Searching for:", query)
-      showNotification(`Searching for: ${query}`)
-      // Redirect to search results page
-      // window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+      console.log("Searching for:", query);
+      showNotification(`Searching for: ${query}`);
     }
   }
 
-  searchBtn.addEventListener("click", performSearch)
+  searchBtn.addEventListener("click", performSearch);
   searchInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
-      performSearch()
+      performSearch();
     }
-  })
+  });
 }
 
-// Wishlist Functionality
-function initializeWishlist() {
-  const wishlistBtns = document.querySelectorAll(".wishlist-btn")
-  let wishlistItems = JSON.parse(localStorage.getItem("wishlist")) || []
+// Update the product actions initialization to include navigation
+function initializeProductActions() {
+  const quickViewBtns = document.querySelectorAll(".quick-view-btn");
+  const addToCartBtns = document.querySelectorAll(".add-to-cart-btn");
+  const productImages = document.querySelectorAll(".product-image");
 
-  wishlistBtns.forEach((btn) => {
+  // Add click handlers for product images
+  productImages.forEach((image) => {
+    image.addEventListener("click", (e) => {
+      const productCard = image.closest(".product-card");
+      if (productCard) {
+        const productId = productCard.dataset.productId || "default";
+        goToProduct(productId);
+      }
+    });
+  });
+
+  quickViewBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
-      const productCard = btn.closest(".product-card")
-      if (!productCard) {
-        // Allow default navigation for header wishlist icon
-        return
+      e.preventDefault();
+      e.stopPropagation();
+      const productCard = btn.closest(".product-card");
+      if (productCard) {
+        const productId = productCard.dataset.productId || "default";
+        goToProduct(productId);
       }
+    });
+  });
 
-      // Only prevent default for product card wishlist buttons
-      e.preventDefault()
-
-      const productId = productCard.dataset.productId || Math.random().toString(36).substr(2, 9)
-      const productTitle = productCard.querySelector(".product-title")?.textContent
-      const productPrice = productCard.querySelector(".current-price")?.textContent
-      const productImage = productCard.querySelector(".product-image img")?.src
-
-      const isInWishlist = wishlistItems.some((item) => item.id === productId)
-
-      if (isInWishlist) {
-        // Remove from wishlist
-        wishlistItems = wishlistItems.filter((item) => item.id !== productId)
-        btn.classList.remove("active")
-        showNotification("Removed from wishlist")
-      } else {
-        // Add to wishlist
-        wishlistItems.push({
-          id: productId,
-          title: productTitle,
-          price: productPrice,
-          image: productImage,
-        })
-        btn.classList.add("active")
-        showNotification("Added to wishlist")
+  addToCartBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const productCard = btn.closest(".product-card");
+      if (productCard) {
+        addToCart(productCard);
       }
+    });
+  });
+}
 
-      localStorage.setItem("wishlist", JSON.stringify(wishlistItems))
-      updateWishlistCount()
-    })
-  })
+// Quick View Modal
+function openQuickView(productCard) {
+  const productTitle = productCard.querySelector(".product-title")?.textContent;
+  const productPrice = productCard.querySelector(".current-price")?.textContent;
+  const productImage = productCard.querySelector(".product-image img")?.src;
 
-  // Update wishlist button states on page load
-  updateWishlistButtons()
-  updateWishlistCount()
+  // Create modal (simplified version)
+  const modal = document.createElement("div");
+  modal.className = "quick-view-modal";
+  modal.innerHTML = `
+        <div class="modal-content">
+            <button class="close-modal">×</button>
+            <div class="modal-product">
+                <img src="${productImage}" alt="${productTitle}">
+                <div class="modal-info">
+                    <h3>${productTitle}</h3>
+                    <p class="price">${productPrice}</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    `;
 
-  function updateWishlistButtons() {
-    wishlistBtns.forEach((btn) => {
-      const productCard = btn.closest(".product-card")
-      if (!productCard) return
+  document.body.appendChild(modal);
+  modal.style.display = "flex";
 
-      const productId = productCard.dataset.productId
-      if (productId && wishlistItems.some((item) => item.id === productId)) {
-        btn.classList.add("active")
-      }
-    })
-  }
+  // Close modal functionality
+  const closeBtn = modal.querySelector(".close-modal");
+  closeBtn.addEventListener("click", () => {
+    document.body.removeChild(modal);
+  });
 
-  function updateWishlistCount() {
-    const wishlistCount = document.querySelector(".wishlist-btn .badge")
-    if (wishlistCount) {
-      wishlistCount.textContent = wishlistItems.length
-      wishlistCount.style.display = wishlistItems.length > 0 ? "flex" : "none"
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      document.body.removeChild(modal);
     }
+  });
+}
+
+// Add to Cart
+function addToCart(productCard) {
+  const productId = productCard.dataset.productId;
+  const productTitle = productCard.querySelector(".product-title")?.textContent;
+  const productPrice = productCard.querySelector(".current-price")?.textContent;
+  const productImage = productCard.querySelector(".product-image img")?.src;
+
+  let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+  const existingItem = cartItems.find((item) => item.id === productId);
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cartItems.push({
+      id: productId,
+      title: productTitle,
+      price: productPrice,
+      image: productImage,
+      quantity: 1,
+    });
   }
+
+  localStorage.setItem("cart", JSON.stringify(cartItems));
+  updateCartCount();
+  showNotification("Added to cart");
+}
+
+// Update Cart Count
+function updateCartCount() {
+  const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
+  const cartBadge = document.querySelector(".cart-btn .badge");
+  if (cartBadge) {
+    cartBadge.textContent = totalItems;
+    cartBadge.style.display = totalItems > 0 ? "flex" : "none";
+  }
+}
+
+// Show Notification
+function showNotification(message) {
+  const notification = document.createElement("div");
+  notification.className = "notification";
+  notification.textContent = message;
+  notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #db4444;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 4px;
+        z-index: 10000;
+        animation: slideIn 0.3s ease;
+    `;
+
+  document.body.appendChild(notification);
+
+  setTimeout(() => {
+    notification.style.animation = "slideOut 0.3s ease";
+    setTimeout(() => {
+      if (notification.parentNode) {
+        document.body.removeChild(notification);
+      }
+    }, 300);
+  }, 3000);
 }
 
 // Add this function to handle product navigation
@@ -266,164 +339,94 @@ function goToProduct(productSlug) {
     monitor: "product.html?id=monitor",
     "gamepad-havit": "product.html?id=gamepad-havit",
     keyboard: "product.html?id=keyboard",
+  };
+
+  const route = productRoutes[productSlug] || "product.html";
+  window.location.href = route;
+}
+
+// Category Slider
+function initializeCategorySlider() {
+  const prevBtn = document.querySelector(".categories-section .control-btn.prev");
+  const nextBtn = document.querySelector(".categories-section .control-btn.next");
+  const categoriesGrid = document.querySelector(".categories-grid");
+
+  if (!prevBtn || !nextBtn || !categoriesGrid) return;
+
+  let currentPosition = 0;
+  const totalCategories = categoriesGrid.children.length;
+  const visibleCategories = getVisibleCategoriesCount();
+  const maxPosition = Math.max(0, totalCategories - visibleCategories);
+
+  function getVisibleCategoriesCount() {
+    // Determine how many categories to show based on screen width
+    if (window.innerWidth >= 1200) return 6;
+    if (window.innerWidth >= 768) return 4;
+    if (window.innerWidth >= 480) return 3;
+    return 2;
   }
 
-  const route = productRoutes[productSlug] || "product.html"
-  window.location.href = route
-}
+  function updateCategorySlider() {
+    // Update the transform to show the current position
+    categoriesGrid.style.transform = `translateX(-${currentPosition * (100 / visibleCategories)}%)`;
 
-// Update the product actions initialization to include navigation
-function initializeProductActions() {
-  const quickViewBtns = document.querySelectorAll(".quick-view-btn")
-  const addToCartBtns = document.querySelectorAll(".add-to-cart-btn")
-  const productImages = document.querySelectorAll(".product-image")
+    // Update button states
+    prevBtn.disabled = currentPosition === 0;
+    nextBtn.disabled = currentPosition >= maxPosition;
+  }
 
-  // Add click handlers for product images
-  productImages.forEach((image) => {
-    image.addEventListener("click", (e) => {
-      const productCard = image.closest(".product-card")
-      if (productCard) {
-        const productId = productCard.dataset.productId || "default"
-        goToProduct(productId)
-      }
-    })
-  })
-
-  quickViewBtns.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault()
-      e.stopPropagation()
-      const productCard = btn.closest(".product-card")
-      if (productCard) {
-        const productId = productCard.dataset.productId || "default"
-        goToProduct(productId)
-      }
-    })
-  })
-
-  addToCartBtns.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault()
-      e.stopPropagation()
-      const productCard = btn.closest(".product-card")
-      if (productCard) {
-        addToCart(productCard)
-      }
-    })
-  })
-}
-
-// Quick View Modal
-function openQuickView(productCard) {
-  const productTitle = productCard.querySelector(".product-title")?.textContent
-  const productPrice = productCard.querySelector(".current-price")?.textContent
-  const productImage = productCard.querySelector(".product-image img")?.src
-
-  // Create modal (simplified version)
-  const modal = document.createElement("div")
-  modal.className = "quick-view-modal"
-  modal.innerHTML = `
-        <div class="modal-content">
-            <button class="close-modal">&times;</button>
-            <div class="modal-product">
-                <img src="${productImage}" alt="${productTitle}">
-                <div class="modal-info">
-                    <h3>${productTitle}</h3>
-                    <p class="price">${productPrice}</p>
-                    <button class="add-to-cart-btn">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-    `
-
-  document.body.appendChild(modal)
-  modal.style.display = "flex"
-
-  // Close modal functionality
-  const closeBtn = modal.querySelector(".close-modal")
-  closeBtn.addEventListener("click", () => {
-    document.body.removeChild(modal)
-  })
-
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      document.body.removeChild(modal)
+  function handlePrevClick() {
+    if (currentPosition > 0) {
+      currentPosition--;
+      updateCategorySlider();
     }
-  })
-}
-
-// Add to Cart
-function addToCart(productCard) {
-  const productId = productCard.dataset.productId || Math.random().toString(36).substr(2, 9)
-  const productTitle = productCard.querySelector(".product-title")?.textContent
-  const productPrice = productCard.querySelector(".current-price")?.textContent
-  const productImage = productCard.querySelector(".product-image img")?.src
-
-  const cartItems = JSON.parse(localStorage.getItem("cart")) || []
-
-  const existingItem = cartItems.find((item) => item.id === productId)
-
-  if (existingItem) {
-    existingItem.quantity += 1
-  } else {
-    cartItems.push({
-      id: productId,
-      title: productTitle,
-      price: productPrice,
-      image: productImage,
-      quantity: 1,
-    })
   }
 
-  localStorage.setItem("cart", JSON.stringify(cartItems))
-  updateCartCount()
-  showNotification("Added to cart")
-}
-
-// Update Cart Count
-function updateCartCount() {
-  const cartItems = JSON.parse(localStorage.getItem("cart")) || []
-  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0)
-
-  const cartBadge = document.querySelector(".cart-btn .badge")
-  if (cartBadge) {
-    cartBadge.textContent = totalItems
-    cartBadge.style.display = totalItems > 0 ? "flex" : "none"
+  function handleNextClick() {
+    if (currentPosition < maxPosition) {
+      currentPosition++;
+      updateCategorySlider();
+    }
   }
+
+  // Add event listeners
+  prevBtn.addEventListener("click", handlePrevClick);
+  nextBtn.addEventListener("click", handleNextClick);
+
+  // Initialize slider
+  updateCategorySlider();
+
+  // Update on window resize
+  window.addEventListener("resize", () => {
+    const newVisibleCount = getVisibleCategoriesCount();
+    if (newVisibleCount !== visibleCategories) {
+      // Recalculate visible categories and max position
+      const visibleCategories = newVisibleCount;
+      const maxPosition = Math.max(0, totalCategories - visibleCategories);
+      // Ensure current position is valid
+      currentPosition = Math.min(currentPosition, maxPosition);
+      updateCategorySlider();
+    }
+  });
 }
 
-// Show Notification
-function showNotification(message) {
-  const notification = document.createElement("div")
-  notification.className = "notification"
-  notification.textContent = message
-  notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: #db4444;
-        color: white;
-        padding: 12px 24px;
-        border-radius: 4px;
-        z-index: 10000;
-        animation: slideIn 0.3s ease;
-    `
+// Expose timer controls globally for debugging
+window.timerControls = {
+  getState: () => ({ running: timerRunning, targetTime }),
+  restart: () => {
+    stopTimer();
+    setInitialTime();
+    updateCountdown();
+    startTimer();
+  },
+};
 
-  document.body.appendChild(notification)
-
-  setTimeout(() => {
-    notification.style.animation = "slideOut 0.3s ease"
-    setTimeout(() => {
-      if (notification.parentNode) {
-        document.body.removeChild(notification)
-      }
-    }, 300)
-  }, 3000)
-}
+// Initialize cart count on page load
+updateCartCount();
 
 // Add CSS animations
-const style = document.createElement("style")
-style.textContent = `
+const mainStyle = document.createElement("style");
+mainStyle.textContent = `
     @keyframes slideIn {
         from { transform: translateX(100%); opacity: 0; }
         to { transform: translateX(0); opacity: 1; }
@@ -502,10 +505,6 @@ style.textContent = `
         font-size: 16px;
     }
     
-    .wishlist-btn.active i {
-        color: #db4444;
-    }
-    
     @media (max-width: 768px) {
         .modal-product {
             flex-direction: column;
@@ -517,84 +516,5 @@ style.textContent = `
             height: 150px;
         }
     }
-`
-document.head.appendChild(style)
-
-// Initialize cart count on page load
-updateCartCount()
-
-// Category Slider
-function initializeCategorySlider() {
-  const prevBtn = document.querySelector(".categories-section .control-btn.prev")
-  const nextBtn = document.querySelector(".categories-section .control-btn.next")
-  const categoriesGrid = document.querySelector(".categories-grid")
-
-  if (!prevBtn || !nextBtn || !categoriesGrid) return
-
-  let currentPosition = 0
-  const totalCategories = categoriesGrid.children.length
-  const visibleCategories = getVisibleCategoriesCount()
-  const maxPosition = Math.max(0, totalCategories - visibleCategories)
-
-  function getVisibleCategoriesCount() {
-    // Determine how many categories to show based on screen width
-    if (window.innerWidth >= 1200) return 6
-    if (window.innerWidth >= 768) return 4
-    if (window.innerWidth >= 480) return 3
-    return 2
-  }
-
-  function updateCategorySlider() {
-    // Update the transform to show the current position
-    categoriesGrid.style.transform = `translateX(-${currentPosition * (100 / visibleCategories)}%)`
-
-    // Update button states
-    prevBtn.disabled = currentPosition === 0
-    nextBtn.disabled = currentPosition >= maxPosition
-  }
-
-  function handlePrevClick() {
-    if (currentPosition > 0) {
-      currentPosition--
-      updateCategorySlider()
-    }
-  }
-
-  function handleNextClick() {
-    if (currentPosition < maxPosition) {
-      currentPosition++
-      updateCategorySlider()
-    }
-  }
-
-  // Add event listeners
-  prevBtn.addEventListener("click", handlePrevClick)
-  nextBtn.addEventListener("click", handleNextClick)
-
-  // Initialize slider
-  updateCategorySlider()
-
-  // Update on window resize
-  window.addEventListener("resize", () => {
-    const newVisibleCount = getVisibleCategoriesCount()
-    if (newVisibleCount !== visibleCategories) {
-      // Recalculate visible categories and max position
-      const visibleCategories = newVisibleCount
-      const maxPosition = Math.max(0, totalCategories - visibleCategories)
-      // Ensure current position is valid
-      currentPosition = Math.min(currentPosition, maxPosition)
-      updateCategorySlider()
-    }
-  })
-}
-
-// Expose timer controls globally for debugging
-window.timerControls = {
-  getState: () => ({ running: timerRunning, targetTime }),
-  restart: () => {
-    stopTimer()
-    setInitialTime()
-    updateCountdown()
-    startTimer()
-  },
-}
+`;
+document.head.appendChild(mainStyle);

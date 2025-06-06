@@ -119,6 +119,13 @@
   justify-content: center;
 }
 
+.empty-cart {
+  text-align: center;
+  padding: 40px 0;
+  color: #888;
+  font-size: 18px;
+}
+
 .cart-actions {
   display: flex;
   justify-content: space-between;

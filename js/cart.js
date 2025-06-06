@@ -1,6 +1,7 @@
-// Cart page specific functionality
 document.addEventListener("DOMContentLoaded", () => {
   initializeCartPage()
+  renderWishlist()
+  document.querySelector(".move-all-btn")?.addEventListener("click", moveAllToBag)
 })
 
 function initializeCartPage() {
@@ -181,7 +182,6 @@ function applyCoupon(code) {
   if (validCoupons[code.toUpperCase()]) {
     const discount = validCoupons[code.toUpperCase()]
     showNotification(`Coupon applied! ${discount * 100}% discount`)
-    // Apply discount logic here
     applyDiscount(discount)
   } else {
     showNotification("Invalid coupon code", "error")
@@ -268,20 +268,102 @@ function showNotification(message, type = "success") {
   }, 3000)
 }
 
-// Update cart button functionality
-const updateCartBtn = document.querySelector(".update-btn")
-if (updateCartBtn) {
-  updateCartBtn.addEventListener("click", () => {
-    showNotification("Cart updated successfully")
-  })
+function renderWishlist() {
+  const wishlistGrid = document.querySelector(".wishlist-grid")
+  const wishlistCount = document.getElementById("wishlist-count")
+  const wishlistItems = JSON.parse(localStorage.getItem("wishlist")) || []
+  if (wishlistCount) wishlistCount.textContent = wishlistItems.length
+  if (wishlistGrid) {
+    wishlistGrid.innerHTML = wishlistItems.length === 0
+      ? "<p>Your wishlist is empty.</p>"
+      : wishlistItems.map(item => `
+        <div class="product-card" data-product-id="${item.id}">
+          <div class="product-actions">
+            <button class="action-btn delete-btn" title="Remove from Wishlist" onclick="removeFromWishlist('${item.id}')">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+          <div class="product-image" onclick="goToProduct('${item.id}')">
+            <img src="${item.image}" alt="${item.title}">
+          </div>
+          <div class="product-info">
+            <h4 class="product-title">${item.title}</h4>
+            <div class="product-price">
+              <span class="current-price">${item.price}</span>
+            </div>
+          </div>
+          <button class="add-to-cart-btn" onclick="addToCartFromWishlist('${item.id}')">
+            <i class="fa-solid fa-cart-shopping"></i>
+            Add To Cart
+          </button>
+        </div>
+      `).join("")
+  }
 }
 
-// Add empty cart styles
+function removeFromWishlist(productId) {
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || []
+  wishlist = wishlist.filter(item => item.id !== productId)
+  localStorage.setItem("wishlist", JSON.stringify(wishlist))
+  renderWishlist()
+  showNotification("Item removed from wishlist")
+}
+
+function addToCartFromWishlist(productId) {
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || []
+  let cart = JSON.parse(localStorage.getItem("cart")) || []
+  const item = wishlist.find(item => item.id === productId)
+  if (!item) return
+  const existing = cart.find(c => c.id === item.id)
+  if (existing) {
+    existing.quantity += 1
+  } else {
+    cart.push({...item, quantity: 1})
+  }
+  localStorage.setItem("cart", JSON.stringify(cart))
+  removeFromWishlist(productId)
+  updateCartCount()
+  loadCartItems()
+  updateCartTotals()
+  showNotification("Item added to cart")
+}
+
+function moveAllToBag() {
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || []
+  let cart = JSON.parse(localStorage.getItem("cart")) || []
+  wishlist.forEach(item => {
+    const existing = cart.find(c => c.id === item.id)
+    if (existing) {
+      existing.quantity += 1
+    } else {
+      cart.push({...item, quantity: 1})
+    }
+  })
+  localStorage.setItem("cart", JSON.stringify(cart))
+  localStorage.setItem("wishlist", JSON.stringify([]))
+  renderWishlist()
+  loadCartItems()
+  updateCartTotals()
+  updateCartCount()
+  showNotification("All items moved to cart")
+}
+
+function updateCartCount() {
+  const cartItems = JSON.parse(localStorage.getItem("cart")) || []
+  const cartCount = document.getElementById("cart-count")
+  if (cartCount) {
+    cartCount.textContent = cartItems.reduce((total, item) => total + item.quantity, 0)
+  }
+}
+
+// Add styles
 const style = document.createElement("style")
 style.textContent = `
     .empty-cart {
         text-align: center;
-        padding: 80px 20px;
+        padding: 40px 0;
+        color: #888;
+        font-size: 18px;
     }
     
     .empty-cart h3 {
@@ -317,10 +399,3 @@ style.textContent = `
     }
 `
 document.head.appendChild(style)
-
-function updateCartCount() {
-  // This function should be defined elsewhere, likely in main.js or a similar file.
-  // For now, we'll leave it as a placeholder.  If it's truly undefined, you'll need to
-  // either define it here, import it, or remove the calls to it.
-  console.warn("updateCartCount() is called but not defined.  Please define it or import it.")
-}
