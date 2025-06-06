@@ -1,0 +1,119 @@
+.orders-section h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #000;
+}
+
+.orders-table-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 1px 13px rgba(0, 0, 0, 0.05);
+  overflow-x: auto;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.orders-table th,
+.orders-table td {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 14px;
+  color: #000;
+}
+
+.orders-table th {
+  background-color: #f5f5f5;
+  font-weight: 500;
+}
+
+.orders-table td {
+  border-top: 1px solid #e5e5e5;
+}
+
+.status-delivered {
+  color: #28a745;
+  font-weight: 500;
+}
+
+.status-pending {
+  color: #ffc107;
+  font-weight: 500;
+}
+
+.status-shipped {
+  color: #007bff;
+  font-weight: 500;
+}
+
+.view-details-btn {
+  padding: 8px 16px;
+  background-color: #db4444;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.view-details-btn:hover {
+  background-color: #b73e3e;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .orders-table th,
+  .orders-table td {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .orders-section h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .orders-table-container {
+    padding: 16px;
+  }
+
+  .orders-table th,
+  .orders-table td {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+
+  .view-details-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .orders-section h2 {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  .orders-table-container {
+    padding: 12px;
+  }
+
+  .orders-table th,
+  .orders-table td {
+    font-size: 10px;
+    padding: 6px 8px;
+  }
+
+  .view-details-btn {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+}

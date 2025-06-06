@@ -60,35 +60,25 @@
             <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
             <span class="badge" id="cart-badge" aria-label="Cart count">0</span>
           </a>
-          <div class="account-dropdown">
-            <a
-              href="#"
-              class="icon-btn account-btn"
-              id="accountBtn"
-              title="Account"
-              aria-label="Account"
-            >
-              <i class="fa-regular fa-user" aria-hidden="true"></i>
-            </a>
-            <div class="dropdown-menu" id="accountDropdown">
+         <div class="dropdown-menu" id="accountDropdown">
               <a href="account.html" class="dropdown-item">
-                <i class="fa-regular fa-user" aria-hidden="true"></i>
+                <i class="fa-regular fa-user"></i>
                 Manage My Account
               </a>
-              <a href="javascript:void(0)" class="dropdown-item">
-                <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
+              <a href="my-orders.html" class="dropdown-item">
+                <i class="fa-solid fa-box"></i>
                 My Order
               </a>
-              <a href="javascript:void(0)" class="dropdown-item">
-                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+              <a href="my-cancellations.html" class="dropdown-item">
+                <i class="fa-solid fa-times"></i>
                 My Cancellations
               </a>
-              <a href="javascript:void(0)" class="dropdown-item">
-                <i class="fa-regular fa-star" aria-hidden="true"></i>
+              <a href="my-reviews.html" class="dropdown-item">
+                <i class="fa-regular fa-star"></i>
                 My Reviews
               </a>
-              <a href="javascript:void(0)" class="dropdown-item">
-                <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+              <a href="login.html" class="dropdown-item">
+                <i class="fa-solid fa-sign-out-alt"></i>
                 Logout
               </a>
             </div>
@@ -120,157 +110,89 @@
             </div>
             <button class="see-all-btn" type="button">See All</button>
           </div>
-
           <div class="products-grid">
             <div class="product-card" data-product-id="asus-laptop-009">
-              <div class="product-badge">-35%</div>
-              <div class="product-actions">
-                <button class="action-btn wishlist-btn" title="Add to Wishlist" aria-label="Add to Wishlist" type="button">
-                  <i class="fa-regular fa-heart" aria-hidden="true"></i>
-                </button>
-                <button
-                  class="action-btn quick-view-btn"
-                  title="Quick View"
-                  aria-label="Quick View"
-                  type="button"
-                  onclick="goToProduct('laptop')"
-                >
-                  <i class="fa-regular fa-eye" aria-hidden="true"></i>
-                </button>
-              </div>
-              <div class="product-image" onclick="goToProduct('laptop')" tabindex="0" role="button" aria-label="View ASUS FHD Gaming Laptop">
+              <span class="badge">-35%</span>
+              <div class="product-image">
                 <img src="images/laptop.webp" alt="ASUS FHD Gaming Laptop" />
               </div>
-              <div class="product-info">
-                <h4 class="product-title">ASUS FHD Gaming Laptop</h4>
-                <div class="product-price">
-                  <span class="current-price">$960</span>
-                  <span class="original-price">$1160</span>
-                </div>
-                <div class="product-rating">
-                  <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                  </div>
-                  <span class="rating-count">(65)</span>
-                </div>
+              <h4 class="product-title">ASUS FHD Gaming Laptop</h4>
+              <div class="product-price">
+                <span class="current-price">$960</span>
+                <span class="old-price">$1160</span>
               </div>
-              <button class="add-to-cart-overlay" aria-label="Add ASUS FHD Gaming Laptop to cart" type="button">Add To Cart</button>
+              <div class="product-rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <span>(65)</span>
+              </div>
+              <button class="add-to-cart-btn">Add To Cart</button>
             </div>
 
             <div class="product-card" data-product-id="flash-monitor-003">
-              <div class="product-actions">
-                <button class="action-btn wishlist-btn" title="Add to Wishlist" aria-label="Add to Wishlist" type="button">
-                  <i class="fa-regular fa-heart" aria-hidden="true"></i>
-                </button>
-                <button
-                  class="action-btn quick-view-btn"
-                  title="Quick View"
-                  aria-label="Quick View"
-                  type="button"
-                  onclick="goToProduct('monitor')"
-                >
-                  <i class="fa-regular fa-eye" aria-hidden="true"></i>
-                </button>
-              </div>
-              <div class="product-image" onclick="goToProduct('monitor')" tabindex="0" role="button" aria-label="View IPS LCD Gaming Monitor">
+              <span class="badge">-30%</span>
+              <div class="product-image">
                 <img src="images/monitor.webp" alt="IPS LCD Gaming Monitor" />
               </div>
-              <div class="product-info">
-                <h4 class="product-title">IPS LCD Gaming Monitor</h4>
-                <div class="product-price">
-                  <span class="current-price">$1160</span>
-                </div>
-                <div class="product-rating">
-                  <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                  </div>
-                  <span class="rating-count">(65)</span>
-                </div>
+              <h4 class="product-title">IPS LCD Gaming Monitor</h4>
+              <div class="product-price">
+                <span class="current-price">$370</span>
+                <span class="old-price">$400</span>
               </div>
-              <button class="add-to-cart-overlay" aria-label="Add IPS LCD Gaming Monitor to cart" type="button">Add To Cart</button>
+              <div class="product-rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <span>(99)</span>
+              </div>
+              <button class="add-to-cart-btn">Add To Cart</button>
             </div>
 
             <div class="product-card" data-product-id="flash-gamepad-001">
-              <div class="product-badge">NEW</div>
-              <div class="product-actions">
-                <button class="action-btn wishlist-btn" title="Add to Wishlist" aria-label="Add to Wishlist" type="button">
-                  <i class="fa-regular fa-heart" aria-hidden="true"></i>
-                </button>
-                <button
-                  class="action-btn quick-view-btn"
-                  title="Quick View"
-                  aria-label="Quick View"
-                  type="button"
-                  onclick="goToProduct('gamepad-havit')"
-                >
-                  <i class="fa-regular fa-eye" aria-hidden="true"></i>
-                </button>
-              </div>
-              <div class="product-image" onclick="goToProduct('gamepad-havit')" tabindex="0" role="button" aria-label="View HAVIT HV-G92 Gamepad">
+              <span class="badge">-40%</span>
+              <div class="product-image">
                 <img src="images/gamepad-red.webp" alt="HAVIT HV-G92 Gamepad" />
               </div>
-              <div class="product-info">
-                <h4 class="product-title">HAVIT HV-G92 Gamepad</h4>
-                <div class="product-price">
-                  <span class="current-price">$560</span>
-                </div>
-                <div class="product-rating">
-                  <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                  </div>
-                  <span class="rating-count">(65)</span>
-                </div>
+              <h4 class="product-title">HAVIT HV-G92 Gamepad</h4>
+              <div class="product-price">
+                <span class="current-price">$120</span>
+                <span class="old-price">$160</span>
               </div>
-              <button class="add-to-cart-overlay" aria-label="Add HAVIT HV-G92 Gamepad to cart" type="button">Add To Cart</button>
+              <div class="product-rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <span>(88)</span>
+              </div>
+              <button class="add-to-cart-btn">Add To Cart</button>
             </div>
 
             <div class="product-card" data-product-id="flash-keyboard-002">
-              <div class="product-actions">
-                <button class="action-btn wishlist-btn" title="Add to Wishlist" aria-label="Add to Wishlist" type="button">
-                  <i class="fa-regular fa-heart" aria-hidden="true"></i>
-                </button>
-                <button
-                  class="action-btn quick-view-btn"
-                  title="Quick View"
-                  aria-label="Quick View"
-                  type="button"
-                  onclick="goToProduct('keyboard')"
-                >
-                  <i class="fa-regular fa-eye" aria-hidden="true"></i>
-                </button>
-              </div>
-              <div class="product-image" onclick="goToProduct('keyboard')" tabindex="0" role="button" aria-label="View AK-900 Wired Keyboard">
+              <span class="badge">-35%</span>
+              <div class="product-image">
                 <img src="images/keyboard.webp" alt="AK-900 Wired Keyboard" />
               </div>
-              <div class="product-info">
-                <h4 class="product-title">AK-900 Wired Keyboard</h4>
-                <div class="product-price">
-                  <span class="current-price">$200</span>
-                </div>
-                <div class="product-rating">
-                  <div class="stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                  </div>
-                  <span class="rating-count">(65)</span>
-                </div>
+              <h4 class="product-title">AK-900 Wired Keyboard</h4>
+              <div class="product-price">
+                <span class="current-price">$960</span>
+                <span class="old-price">$1160</span>
               </div>
-              <button class="add-to-cart-overlay" aria-label="Add AK-900 Wired Keyboard to cart" type="button">Add To Cart</button>
+              <div class="product-rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <span>(75)</span>
+              </div>
+              <button class="add-to-cart-btn">Add To Cart</button>
             </div>
           </div>
         </div>
@@ -358,7 +280,9 @@
       </div>
     </footer>
 
-    <script src="js/main.js"></script>
     <script src="js/wishlist.js"></script>
+<script src="js/main.js"></script>
+<script src="js/product.js"></script>
+<script src="js/cart.js"></script>
   </body>
 </html>

@@ -464,13 +464,12 @@
   /* transform: scale(1.2); */
 }
 
-/* New Arrival Grid - Fixed Layout */
+/* New Arrival Grid - Flexible Layout */
 .new-arrival-grid {
   display: grid;
-  grid-template-columns: 570px 270px 270px;
-  grid-template-rows: 284px 284px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 30px;
-  height: 600px;
+  height: auto; /* Remove fixed height */
 }
 
 .arrival-item {
@@ -481,24 +480,12 @@
   color: #fff;
   display: flex;
   align-items: flex-end;
+  min-height: 250px; /* Ensure minimum height for content */
+  aspect-ratio: 4 / 3; /* Maintain consistent proportions */
 }
 
 .arrival-item.large {
-  grid-row: span 2;
-}
-
-.arrival-item.medium {
-  grid-column: 2 / span 2;
-}
-
-.arrival-item.small:nth-child(3) {
-  grid-column: 2;
-  grid-row: 2;
-}
-
-.arrival-item.small:nth-child(4) {
-  grid-column: 3;
-  grid-row: 2;
+  /* Prominent item spans two columns on larger screens */
 }
 
 .arrival-content {
@@ -586,6 +573,21 @@
   color: #808080;
 }
 
+@media (min-width: 1025px) {
+  .new-arrival-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  .arrival-item.large {
+    grid-column: span 2;
+  }
+  .arrival-item.large .arrival-content h3 {
+    font-size: 28px; /* Larger for prominence */
+  }
+  .arrival-item.large .arrival-content p {
+    font-size: 16px;
+  }
+}
+
 /* Responsive Design for Home */
 @media (max-width: 1024px) {
   .sidebar-hero-wrapper {
@@ -625,19 +627,28 @@
     font-size: 36px;
   }
 
-    .new-arrival-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
+.new-arrival-grid {
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     gap: 20px;
-    height: auto;
+  }
+  .arrival-item {
+    min-height: 250px;
   }
   .arrival-item.large {
-    grid-column: span 2;
-    height: 300px;
+    min-height: 300px;
   }
-  .arrival-item.medium,
-  .arrival-item.small {
-    height: 200px;
+  .arrival-content {
+    bottom: 24px;
+    left: 24px;
+    max-width: 85%;
+  }
+  .arrival-content h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  .arrival-content p {
+    font-size: 13px;
+    margin-bottom: 12px;
   }
 
   .services-grid {
@@ -691,28 +702,30 @@
 
    .new-arrival-grid {
     grid-template-columns: 1fr;
-    grid-template-rows: none;
     gap: 16px;
-    height: auto;
   }
   .arrival-item {
-    height: 220px;
-    min-height: 180px;
+    min-height: 200px;
+  }
+  .arrival-item.large {
+    min-height: 250px;
   }
   .arrival-content {
-    left: 16px;
     bottom: 16px;
+    left: 16px;
+    max-width: 90%;
   }
   .arrival-content h3 {
     font-size: 18px;
+    margin-bottom: 8px;
   }
   .arrival-content p {
     font-size: 12px;
+    margin-bottom: 8px;
   }
-
-  .services-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
+  .shop-now-link {
+    font-size: 14px;
+    padding-bottom: 2px;
   }
 }
 
@@ -745,53 +758,36 @@
     font-size: 24px;
   }
 
-   .new-arrival-grid {
-    grid-template-columns: 1fr;
+.new-arrival-grid {
     gap: 12px;
   }
   .arrival-item {
-    height: 140px;
-    min-height: 100px;
+    min-height: 150px;
+  }
+  .arrival-item.large {
+    min-height: 200px;
   }
   .arrival-content {
-    left: 10px;
-    bottom: 10px;
+    bottom: 12px;
+    left: 12px;
+    max-width: 90%;
   }
   .arrival-content h3 {
     font-size: 15px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
   .arrival-content p {
     font-size: 10px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
   .shop-now-link {
     font-size: 12px;
-    padding-bottom: 2px;
-  }
-  .arrival-image img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
+    padding-bottom: 1px;
   }
 }
 
 /* Custom CSS */
 
-
-/* Fix image sizes on smaller screens */
-/* @media (max-width: 768px) {
-  .new-arrival-grid .arrival-item.large,
-  .new-arrival-grid .arrival-item.small {
-    height: auto;
-  }
-
-  .new-arrival-grid .arrival-image img {
-    max-width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
-} */
 
 /* Remove scrollbar from sidebar */
 .sidebar .category-menu {

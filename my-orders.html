@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Account - Exclusive</title>
+    <title>My Orders - Exclusive</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/account.css">
+    <link rel="stylesheet" href="css/my-orders.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -31,6 +32,17 @@
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="signup.html">Sign Up</a></li>
+                    <li class="dropdown">
+                        <a href="account.html">My Account <i class="fa-solid fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="my-orders.html">My Orders</a></li>
+                            <li><a href="my-cancellations.html">My Cancellations</a></li>
+                            <li><a href="my-reviews.html">My Reviews</a></li>
+                            <li><a href="my-returns.html">My Returns</a></li>
+                            <li><a href="address-book.html">Address Book</a></li>
+                            <li><a href="payment-options.html">Payment Options</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
             <div class="header-actions">
@@ -38,34 +50,9 @@
                     <input type="text" placeholder="What are you looking for?">
                     <button type="submit" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
-                <a href="wishlist.html" class="icon-btn wishlist-btn" title="Wishlist"><i class="fa-regular fa-heart"></i></a>
+                <a href="#" class="icon-btn wishlist-btn" title="Wishlist"><i class="fa-regular fa-heart"></i></a>
                 <a href="cart.html" class="icon-btn cart-btn" title="Cart"><i class="fa-solid fa-cart-shopping"></i></a>
-                 <div class="account-dropdown">
-                    <a href="#" class="icon-btn account-btn" id="accountBtn" title="Account"><i class="fa-regular fa-user"></i></a>
-                    <div class="dropdown-menu" id="accountDropdown">
-              <a href="account.html" class="dropdown-item">
-                <i class="fa-regular fa-user"></i>
-                Manage My Account
-              </a>
-              <a href="my-orders.html" class="dropdown-item">
-                <i class="fa-solid fa-box"></i>
-                My Order
-              </a>
-              <a href="my-cancellations.html" class="dropdown-item">
-                <i class="fa-solid fa-times"></i>
-                My Cancellations
-              </a>
-              <a href="my-reviews.html" class="dropdown-item">
-                <i class="fa-regular fa-star"></i>
-                My Reviews
-              </a>
-              <a href="login.html" class="dropdown-item">
-                <i class="fa-solid fa-sign-out-alt"></i>
-                Logout
-              </a>
-            </div>
-          </div>
-                </div>
+                <a href="account.html" class="icon-btn account-btn" title="Account"><i class="fa-regular fa-user"></i></a>
             </div>
         </div>
     </header>
@@ -77,11 +64,9 @@
             <div class="container">
                 <ul class="breadcrumb">
                     <li><a href="index.html">Home</a></li>
-                    <li>My Account</li>
+                    <li><a href="account.html">Account</a></li>
+                    <li>My Orders</li>
                 </ul>
-                <div class="welcome-message">
-                    Welcome! <span class="user-name">Md Rimel</span>
-                </div>
             </div>
         </div>
 
@@ -92,58 +77,55 @@
                     <div class="account-sidebar">
                         <h3>Manage My Account</h3>
                         <ul class="account-menu">
-                            <li><a href="account.html" class="active">My Profile</a></li>
-                            <li><a href="#">Address Book</a></li>
-                            <li><a href="#">My Payment Options</a></li>
+                            <li><a href="account.html">My Profile</a></li>
+                            <li><a href="address-book.html">Address Book</a></li>
+                            <li><a href="payment-options.html">My Payment Options</a></li>
                         </ul>
                         <h3>My Orders</h3>
                         <ul class="account-menu">
+                            <li><a href="my-orders.html" class="active">My Orders</a></li>
+                            <li><a href="my-reviews.html">My Reviews</a></li>
                             <li><a href="my-returns.html">My Returns</a></li>
                             <li><a href="my-cancellations.html">My Cancellations</a></li>
                         </ul>
                         <h3>My Wishlist</h3>
                     </div>
                     <div class="account-content">
-                        <div class="profile-form">
-                            <h2>Edit Your Profile</h2>
-                            <form>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="firstName">First Name</label>
-                                        <input type="text" id="firstName" value="Md">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="lastName">Last Name</label>
-                                        <input type="text" id="lastName" value="Rimel">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input type="email" id="email" value="rimel1111@gmail.com">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="address">Address</label>
-                                        <input type="text" id="address" value="Kingston, 5236, United State">
-                                    </div>
-                                </div>
-                                <div class="password-section">
-                                    <h3>Password Changes</h3>
-                                    <div class="form-group">
-                                        <input type="password" placeholder="Current Password">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" placeholder="New Password">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" placeholder="Confirm New Password">
-                                    </div>
-                                </div>
-                                <div class="form-actions">
-                                    <button type="button" class="cancel-btn">Cancel</button>
-                                    <button type="submit" class="save-btn">Save Changes</button>
-                                </div>
-                            </form>
+                        <div class="orders-table-container">
+                            <table class="orders-table">
+                                <thead>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Date</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#12345</td>
+                                        <td>2025-06-01</td>
+                                        <td>$150.00</td>
+                                        <td class="status-delivered">Delivered</td>
+                                        <td><button class="view-details-btn">View Details</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#12346</td>
+                                        <td>2025-05-28</td>
+                                        <td>$89.99</td>
+                                        <td class="status-pending">Pending</td>
+                                        <td><button class="view-details-btn">View Details</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#12347</td>
+                                        <td>2025-05-20</td>
+                                        <td>$250.00</td>
+                                        <td class="status-shipped">Shipped</td>
+                                        <td><button class="view-details-btn">View Details</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -163,7 +145,10 @@
                     <p>Get 10% off your first order</p>
                     <div class="subscribe-form">
                         <input type="email" placeholder="Enter your email">
-                        <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                        <button type="submit">
+                            <span class="visually-hidden">Subscribe</span>
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
                     </div>
                 </div>
                 <div class="footer-column">
@@ -208,15 +193,15 @@
                         </div>
                     </div>
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link" title="Facebook" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-link" title="Twitter" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="social-link" title="Instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-link" title="LinkedIn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; Copyright Rimel 2022. All right reserved</p>
+                <p>© Copyright Rimel 2022. All rights reserved</p>
             </div>
         </div>
     </footer>

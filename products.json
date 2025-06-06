@@ -1,6 +1,6 @@
 [
   {
-    "id": "flash-gamepad-001",
+    "id": "001",
     "name": "HAVIT HV-G92 Gamepad",
     "price": 120,
     "originalPrice": 160,
@@ -15,7 +15,7 @@
     "badge": "-40%"
   },
   {
-    "id": "flash-keyboard-002",
+    "id": "002",
     "name": "AK-900 Wired Keyboard",
     "price": 960,
     "originalPrice": 1160,
@@ -30,7 +30,7 @@
     "badge": "-35%"
   },
   {
-    "id": "flash-monitor-003",
+    "id": "003",
     "name": "IPS LCD Gaming Monitor",
     "price": 370,
     "originalPrice": 400,
@@ -45,7 +45,7 @@
     "badge": "-30%"
   },
   {
-    "id": "flash-chair-004",
+    "id": "004",
     "name": "S-Series Comfort Chair",
     "price": 375,
     "originalPrice": 400,
@@ -60,7 +60,7 @@
     "badge": ""
   },
   {
-    "id": "rgb-cooler-005",
+    "id": "005",
     "name": "RGB liquid CPU Cooler",
     "price": 160,
     "originalPrice": 170,
@@ -75,7 +75,7 @@
     "badge": ""
   },
   {
-    "id": "gucci-bag-006",
+    "id": "006",
     "name": "Gucci duffle bag",
     "price": 960,
     "originalPrice": 1160,
@@ -90,7 +90,7 @@
     "badge": "-35%"
   },
   {
-    "id": "quilted-jacket-007",
+    "id": "007",
     "name": "Quilted Satin Jacket",
     "price": 750,
     "originalPrice": null,
@@ -105,7 +105,7 @@
     "badge": ""
   },
   {
-    "id": "gamepad-black-008",
+    "id": "008",
     "name": "GP11 Shooter USB Gamepad",
     "price": 660,
     "originalPrice": null,
@@ -120,7 +120,7 @@
     "badge": ""
   },
   {
-    "id": "asus-laptop-009",
+    "id": "009",
     "name": "ASUS FHD Gaming Laptop",
     "price": 960,
     "originalPrice": 1160,
@@ -135,7 +135,7 @@
     "badge": "-35%"
   },
   {
-    "id": "comfort-chair-010",
+    "id": "010",
     "name": "S-Series Comfort Chair",
     "price": 375,
     "originalPrice": 400,
@@ -150,7 +150,7 @@
     "badge": ""
   },
   {
-    "id": "curology-set-011",
+    "id": "011",
     "name": "Curology Product Set",
     "price": 500,
     "originalPrice": null,
@@ -165,7 +165,7 @@
     "badge": ""
   },
   {
-    "id": "kids-car-012",
+    "id": "012",
     "name": "Kids Electric Car",
     "price": 960,
     "originalPrice": null,
@@ -180,7 +180,7 @@
     "badge": "NEW"
   },
   {
-    "id": "soccer-cleats-013",
+    "id": "013",
     "name": "Jr. Soccer Cleats",
     "price": 160,
     "originalPrice": null,
@@ -195,7 +195,7 @@
     "badge": "SALE"
   },
   {
-    "id": "dog-food-014",
+    "id": "014",
     "name": "Breed Dry Dog Food",
     "price": 100,
     "originalPrice": null,
@@ -210,7 +210,7 @@
     "badge": ""
   },
   {
-    "id": "canon-camera-015",
+    "id": "015",
     "name": "CANON EOS DSLR Camera",
     "price": 360,
     "originalPrice": null,
@@ -225,7 +225,7 @@
     "badge": ""
   },
   {
-    "id": "gucci-perfume-016",
+    "id": "016",
     "name": "GUCCI INTENSE OUD EDP",
     "price": 150,
     "originalPrice": null,
@@ -240,7 +240,7 @@
     "badge": ""
   },
   {
-    "id": "amazon-speaker-017",
+    "id": "017",
     "name": "Amazon Wireless Speaker",
     "price": 89,
     "originalPrice": null,
@@ -255,7 +255,7 @@
     "badge": ""
   },
   {
-    "id": "amazon-mini-speaker-018",
+    "id": "018",
     "name": "Amazon Mini Wireless Speaker",
     "price": 45,
     "originalPrice": null,
