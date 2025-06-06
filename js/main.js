@@ -304,6 +304,8 @@ function showNotification(message) {
   const notification = document.createElement("div");
   notification.className = "notification";
   notification.textContent = message;
+  notification.setAttribute("role", "alert");
+  notification.setAttribute("aria-live", "assertive");
   notification.style.cssText = `
         position: fixed;
         top: 20px;

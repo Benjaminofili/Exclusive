@@ -17,7 +17,7 @@
     <div class="announcement-bar">
       <p>
         Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!
-        <a href="#" class="shop-now">ShopNow</a>
+        <a href="javascript:void(0)" class="shop-now">ShopNow</a>
       </p>
       <div class="language-selector">
         <span>English</span>
@@ -42,21 +42,22 @@
         <div class="header-actions">
           <div class="search-bar">
             <input type="text" placeholder="What are you looking for?" />
-            <button type="submit" title="Search">
+            <button type="submit" title="Search" aria-label="Search">
               <span class="visually-hidden">Search</span>
-              <i class="fa-solid fa-magnifying-glass"></i>
+              <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
             </button>
           </div>
           <a
             href="wishlist.html"
             class="icon-btn wishlist-btn active"
             title="Wishlist"
+            aria-label="Wishlist"
           >
-            <i class="fa-regular fa-heart"></i>
-            <span class="badge"></span>
+            <i class="fa-regular fa-heart" aria-hidden="true"></i>
+            <span class="badge" aria-label="Wishlist count"></span>
           </a>
-          <a href="cart.html" class="icon-btn cart-btn" title="Cart">
-            <i class="fa-solid fa-cart-shopping"></i>
+          <a href="cart.html" class="icon-btn cart-btn" title="Cart" aria-label="Cart">
+            <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
           </a>
           <div class="account-dropdown">
             <a
@@ -64,28 +65,29 @@
               class="icon-btn account-btn"
               id="accountBtn"
               title="Account"
+              aria-label="Account"
             >
-              <i class="fa-regular fa-user"></i>
+              <i class="fa-regular fa-user" aria-hidden="true"></i>
             </a>
             <div class="dropdown-menu" id="accountDropdown">
               <a href="account.html" class="dropdown-item">
-                <i class="fa-regular fa-user"></i>
+                <i class="fa-regular fa-user" aria-hidden="true"></i>
                 Manage My Account
               </a>
-              <a href="#" class="dropdown-item">
-                <i class="fa-solid fa-bag-shopping"></i>
+              <a href="javascript:void(0)" class="dropdown-item">
+                <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
                 My Order
               </a>
-              <a href="#" class="dropdown-item">
-                <i class="fa-solid fa-xmark"></i>
+              <a href="javascript:void(0)" class="dropdown-item">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                 My Cancellations
               </a>
-              <a href="#" class="dropdown-item">
-                <i class="fa-regular fa-star"></i>
+              <a href="javascript:void(0)" class="dropdown-item">
+                <i class="fa-regular fa-star" aria-hidden="true"></i>
                 My Reviews
               </a>
-              <a href="#" class="dropdown-item">
-                <i class="fa-solid fa-right-from-bracket"></i>
+              <a href="javascript:void(0)" class="dropdown-item">
+                <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
                 Logout
               </a>
             </div>
@@ -101,7 +103,7 @@
         <div class="container">
           <div class="wishlist-header">
             <h1>Wishlist (<span id="wishlist-count">0</span>)</h1>
-            <button class="move-all-btn">Move All To Bag</button>
+            <button class="move-all-btn" aria-label="Move all wishlist items to bag" type="button">Move All To Bag</button>
           </div>
           <div class="wishlist-grid"></div>
         </div>
@@ -115,25 +117,27 @@
               <div class="title-indicator"></div>
               <h2>Just For You</h2>
             </div>
-            <button class="see-all-btn">See All</button>
+            <button class="see-all-btn" type="button">See All</button>
           </div>
 
           <div class="products-grid">
             <div class="product-card" data-product-id="5">
               <div class="product-badge">-35%</div>
               <div class="product-actions">
-                <button class="action-btn wishlist-btn" title="Add to Wishlist">
-                  <i class="fa-regular fa-heart"></i>
+                <button class="action-btn wishlist-btn" title="Add to Wishlist" aria-label="Add to Wishlist" type="button">
+                  <i class="fa-regular fa-heart" aria-hidden="true"></i>
                 </button>
                 <button
                   class="action-btn quick-view-btn"
                   title="Quick View"
+                  aria-label="Quick View"
+                  type="button"
                   onclick="goToProduct('laptop')"
                 >
-                  <i class="fa-regular fa-eye"></i>
+                  <i class="fa-regular fa-eye" aria-hidden="true"></i>
                 </button>
               </div>
-              <div class="product-image" onclick="goToProduct('laptop')">
+              <div class="product-image" onclick="goToProduct('laptop')" tabindex="0" role="button" aria-label="View ASUS FHD Gaming Laptop">
                 <img src="images/laptop.webp" alt="ASUS FHD Gaming Laptop" />
               </div>
               <div class="product-info">
@@ -153,23 +157,25 @@
                   <span class="rating-count">(65)</span>
                 </div>
               </div>
-              <button class="add-to-cart-overlay">Add To Cart</button>
+              <button class="add-to-cart-overlay" aria-label="Add ASUS FHD Gaming Laptop to cart" type="button">Add To Cart</button>
             </div>
 
             <div class="product-card" data-product-id="6">
               <div class="product-actions">
-                <button class="action-btn wishlist-btn" title="Add to Wishlist">
-                  <i class="fa-regular fa-heart"></i>
+                <button class="action-btn wishlist-btn" title="Add to Wishlist" aria-label="Add to Wishlist" type="button">
+                  <i class="fa-regular fa-heart" aria-hidden="true"></i>
                 </button>
                 <button
                   class="action-btn quick-view-btn"
                   title="Quick View"
+                  aria-label="Quick View"
+                  type="button"
                   onclick="goToProduct('monitor')"
                 >
-                  <i class="fa-regular fa-eye"></i>
+                  <i class="fa-regular fa-eye" aria-hidden="true"></i>
                 </button>
               </div>
-              <div class="product-image" onclick="goToProduct('monitor')">
+              <div class="product-image" onclick="goToProduct('monitor')" tabindex="0" role="button" aria-label="View IPS LCD Gaming Monitor">
                 <img src="images/monitor.webp" alt="IPS LCD Gaming Monitor" />
               </div>
               <div class="product-info">
@@ -188,24 +194,26 @@
                   <span class="rating-count">(65)</span>
                 </div>
               </div>
-              <button class="add-to-cart-overlay">Add To Cart</button>
+              <button class="add-to-cart-overlay" aria-label="Add IPS LCD Gaming Monitor to cart" type="button">Add To Cart</button>
             </div>
 
             <div class="product-card" data-product-id="7">
               <div class="product-badge">NEW</div>
               <div class="product-actions">
-                <button class="action-btn wishlist-btn" title="Add to Wishlist">
-                  <i class="fa-regular fa-heart"></i>
+                <button class="action-btn wishlist-btn" title="Add to Wishlist" aria-label="Add to Wishlist" type="button">
+                  <i class="fa-regular fa-heart" aria-hidden="true"></i>
                 </button>
                 <button
                   class="action-btn quick-view-btn"
                   title="Quick View"
+                  aria-label="Quick View"
+                  type="button"
                   onclick="goToProduct('gamepad-havit')"
                 >
-                  <i class="fa-regular fa-eye"></i>
+                  <i class="fa-regular fa-eye" aria-hidden="true"></i>
                 </button>
               </div>
-              <div class="product-image" onclick="goToProduct('gamepad-havit')">
+              <div class="product-image" onclick="goToProduct('gamepad-havit')" tabindex="0" role="button" aria-label="View HAVIT HV-G92 Gamepad">
                 <img src="images/gamepad-red.webp" alt="HAVIT HV-G92 Gamepad" />
               </div>
               <div class="product-info">
@@ -224,23 +232,25 @@
                   <span class="rating-count">(65)</span>
                 </div>
               </div>
-              <button class="add-to-cart-overlay">Add To Cart</button>
+              <button class="add-to-cart-overlay" aria-label="Add HAVIT HV-G92 Gamepad to cart" type="button">Add To Cart</button>
             </div>
 
             <div class="product-card" data-product-id="8">
               <div class="product-actions">
-                <button class="action-btn wishlist-btn" title="Add to Wishlist">
-                  <i class="fa-regular fa-heart"></i>
+                <button class="action-btn wishlist-btn" title="Add to Wishlist" aria-label="Add to Wishlist" type="button">
+                  <i class="fa-regular fa-heart" aria-hidden="true"></i>
                 </button>
                 <button
                   class="action-btn quick-view-btn"
                   title="Quick View"
+                  aria-label="Quick View"
+                  type="button"
                   onclick="goToProduct('keyboard')"
                 >
-                  <i class="fa-regular fa-eye"></i>
+                  <i class="fa-regular fa-eye" aria-hidden="true"></i>
                 </button>
               </div>
-              <div class="product-image" onclick="goToProduct('keyboard')">
+              <div class="product-image" onclick="goToProduct('keyboard')" tabindex="0" role="button" aria-label="View AK-900 Wired Keyboard">
                 <img src="images/keyboard.webp" alt="AK-900 Wired Keyboard" />
               </div>
               <div class="product-info">
@@ -259,7 +269,7 @@
                   <span class="rating-count">(65)</span>
                 </div>
               </div>
-              <button class="add-to-cart-overlay">Add To Cart</button>
+              <button class="add-to-cart-overlay" aria-label="Add AK-900 Wired Keyboard to cart" type="button">Add To Cart</button>
             </div>
           </div>
         </div>
@@ -277,10 +287,10 @@
             <h4>Subscribe</h4>
             <p>Get 10% off your first order</p>
             <div class="subscribe-form">
-              <input type="email" placeholder="Enter your email" />
-              <button type="submit" title="Subscribe">
+              <input type="email" placeholder="Enter your email" aria-label="Email address" />
+              <button type="submit" title="Subscribe" aria-label="Subscribe">
                 <span class="visually-hidden">Subscribe</span>
-                <i class="fa-solid fa-paper-plane"></i>
+                <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
               </button>
             </div>
           </div>
@@ -317,26 +327,26 @@
                 <img src="images/qrcode.webp" alt="QR Code" />
               </div>
               <div class="app-links">
-                <a href="#" class="app-link">
+                <a href="javascript:void(0)" class="app-link" aria-label="Download on Google Play" role="button" tabindex="0">
                   <img src="images/play-store.webp" alt="Google Play" />
                 </a>
-                <a href="#" class="app-link">
+                <a href="javascript:void(0)" class="app-link" aria-label="Download on App Store" role="button" tabindex="0">
                   <img src="images/app-store.webp" alt="App Store" />
                 </a>
               </div>
             </div>
             <div class="social-links">
-              <a href="#" class="social-link" title="Facebook"
-                ><i class="fa-brands fa-facebook-f"></i
+              <a href="javascript:void(0)" class="social-link" title="Facebook" aria-label="Facebook" role="button" tabindex="0"
+                ><i class="fa-brands fa-facebook-f" aria-hidden="true"></i
               ></a>
-              <a href="#" class="social-link" title="Twitter"
-                ><i class="fa-brands fa-twitter"></i
+              <a href="javascript:void(0)" class="social-link" title="Twitter" aria-label="Twitter" role="button" tabindex="0"
+                ><i class="fa-brands fa-twitter" aria-hidden="true"></i
               ></a>
-              <a href="#" class="social-link" title="Instagram"
-                ><i class="fa-brands fa-instagram"></i
+              <a href="javascript:void(0)" class="social-link" title="Instagram" aria-label="Instagram" role="button" tabindex="0"
+                ><i class="fa-brands fa-instagram" aria-hidden="true"></i
               ></a>
-              <a href="#" class="social-link" title="LinkedIn"
-                ><i class="fa-brands fa-linkedin-in"></i
+              <a href="javascript:void(0)" class="social-link" title="LinkedIn" aria-label="LinkedIn" role="button" tabindex="0"
+                ><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i
               ></a>
             </div>
           </div>

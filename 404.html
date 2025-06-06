@@ -10,6 +10,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+<style>
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+</style>
     <!-- Announcement Bar -->
     <div class="announcement-bar">
         <p>Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <a href="#" class="shop-now">ShopNow</a></p>
@@ -36,11 +48,11 @@
             <div class="header-actions">
                 <div class="search-bar">
                     <input type="text" placeholder="What are you looking for?">
-                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button type="submit" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
-                <a href="#" class="icon-btn wishlist-btn"><i class="fa-regular fa-heart"></i></a>
-                <a href="cart.html" class="icon-btn cart-btn"><i class="fa-solid fa-cart-shopping"></i></a>
-                <a href="account.html" class="icon-btn account-btn"><i class="fa-regular fa-user"></i></a>
+                <a href="#" class="icon-btn wishlist-btn" title="Wishlist"><i class="fa-regular fa-heart"></i></a>
+                <a href="cart.html" class="icon-btn cart-btn" title="Cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="account.html" class="icon-btn account-btn" title="Account"><i class="fa-regular fa-user"></i></a>
             </div>
         </div>
     </header>
@@ -69,7 +81,10 @@
         </section>
     </main>
 
-    <!-- Footer -->
+                        <button type="submit">
+                            <span class="visually-hidden">Subscribe</span>
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
     <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
@@ -81,7 +96,10 @@
                     <p>Get 10% off your first order</p>
                     <div class="subscribe-form">
                         <input type="email" placeholder="Enter your email">
-                        <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                        <button type="submit">
+                            <span class="visually-hidden">Subscribe</span>
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
                     </div>
                 </div>
                 <div class="footer-column">
@@ -126,10 +144,10 @@
                         </div>
                     </div>
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-link" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="social-link" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-link" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>
