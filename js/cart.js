@@ -1,18 +1,33 @@
-document.addEventListener("DOMContentLoaded", () => {
+let PRODUCTS_CACHE = [];
+
+async function fetchProducts() {
+  if (PRODUCTS_CACHE.length) return PRODUCTS_CACHE;
+  const res = await fetch('products.json');
+  PRODUCTS_CACHE = await res.json();
+  return PRODUCTS_CACHE;
+}
+
+function getProductById(id) {
+  return PRODUCTS_CACHE.find(p => p.id === id);
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  await fetchProducts();
   initializeCartPage()
   renderWishlist()
   document.querySelector(".move-all-btn")?.addEventListener("click", moveAllToBag)
 })
 
-function initializeCartPage() {
-  loadCartItems()
+async function initializeCartPage() {
+  await loadCartItems()
   initializeQuantityControls()
   initializeRemoveButtons()
   initializeCouponForm()
   updateCartTotals()
 }
 
-function loadCartItems() {
+async function loadCartItems() {
+  await fetchProducts()
   const cartItems = JSON.parse(localStorage.getItem("cart")) || []
   const cartTableBody = document.querySelector(".cart-table")
 
@@ -28,12 +43,14 @@ function loadCartItems() {
   }
 
   cartItems.forEach((item, index) => {
-    const cartItem = createCartItemElement(item, index)
+    const product = getProductById(item.id)
+    if (!product) return
+    const cartItem = createCartItemElement(product, item.quantity, index)
     cartTableBody.appendChild(cartItem)
   })
 }
 
-function createCartItemElement(item, index) {
+function createCartItemElement(product, quantity, index) {
   const cartItem = document.createElement("div")
   cartItem.className = "cart-item"
   cartItem.dataset.index = index
@@ -45,15 +62,15 @@ function createCartItemElement(item, index) {
                     <i class="fa-solid fa-xmark"></i>
                 </button>
                 <div class="product-image">
-                    <img src="${item.image}" alt="${item.title}">
+                    <img src="${product.image}" alt="${product.name}">
                 </div>
-                <div class="product-name">${item.title}</div>
+                <div class="product-name">${product.name}</div>
             </div>
         </div>
-        <div class="price-col">${item.price}</div>
+        <div class="price-col">$${product.price}</div>
         <div class="quantity-col">
             <div class="quantity-control">
-                <input type="number" value="${item.quantity}" min="1" max="99" data-index="${index}">
+                <input type="number" value="${quantity}" min="1" max="99" data-index="${index}">
                 <div class="quantity-buttons">
                     <button class="quantity-up" data-index="${index}">
                         <i class="fa-solid fa-chevron-up"></i>
@@ -64,14 +81,14 @@ function createCartItemElement(item, index) {
                 </div>
             </div>
         </div>
-        <div class="subtotal-col">${calculateSubtotal(item.price, item.quantity)}</div>
+        <div class="subtotal-col">${calculateSubtotal(product.price, quantity)}</div>
     `
 
   return cartItem
 }
 
 function calculateSubtotal(price, quantity) {
-  const numericPrice = Number.parseFloat(price.replace("$", ""))
+  const numericPrice = Number.parseFloat(price)
   const subtotal = numericPrice * quantity
   return `$${subtotal.toFixed(2)}`
 }
@@ -137,13 +154,15 @@ function removeCartItem(index) {
   showNotification("Item removed from cart")
 }
 
-function updateCartTotals() {
+async function updateCartTotals() {
+  await fetchProducts()
   const cartItems = JSON.parse(localStorage.getItem("cart")) || []
   let subtotal = 0
 
   cartItems.forEach((item) => {
-    const price = Number.parseFloat(item.price.replace("$", ""))
-    subtotal += price * item.quantity
+    const product = getProductById(item.id)
+    if (!product) return
+    subtotal += Number.parseFloat(product.price) * item.quantity
   })
 
   const shipping = 0 // Free shipping
@@ -188,13 +207,15 @@ function applyCoupon(code) {
   }
 }
 
-function applyDiscount(discountPercent) {
+async function applyDiscount(discountPercent) {
+  await fetchProducts()
   const cartItems = JSON.parse(localStorage.getItem("cart")) || []
   let subtotal = 0
 
   cartItems.forEach((item) => {
-    const price = Number.parseFloat(item.price.replace("$", ""))
-    subtotal += price * item.quantity
+    const product = getProductById(item.id)
+    if (!product) return
+    subtotal += Number.parseFloat(product.price) * item.quantity
   })
 
   const discount = subtotal * discountPercent
@@ -268,57 +289,63 @@ function showNotification(message, type = "success") {
   }, 3000)
 }
 
-function renderWishlist() {
+async function renderWishlist() {
+  await fetchProducts()
   const wishlistGrid = document.querySelector(".wishlist-grid")
   const wishlistCount = document.getElementById("wishlist-count")
-  const wishlistItems = JSON.parse(localStorage.getItem("wishlist")) || []
-  if (wishlistCount) wishlistCount.textContent = wishlistItems.length
+  const wishlistIds = JSON.parse(localStorage.getItem("wishlist")) || []
+  if (wishlistCount) wishlistCount.textContent = wishlistIds.length
   if (wishlistGrid) {
-    wishlistGrid.innerHTML = wishlistItems.length === 0
+    wishlistGrid.innerHTML = wishlistIds.length === 0
       ? "<p>Your wishlist is empty.</p>"
-      : wishlistItems.map(item => `
-        <div class="product-card" data-product-id="${item.id}">
+      : wishlistIds.map(id => {
+        const product = getProductById(id)
+        if (!product) return ''
+        return `
+        <div class="product-card" data-product-id="${product.id}">
           <div class="product-actions">
-            <button class="action-btn delete-btn" title="Remove from Wishlist" onclick="removeFromWishlist('${item.id}')">
+            <button class="action-btn delete-btn" title="Remove from Wishlist" onclick="removeFromWishlist('${product.id}')">
               <i class="fa-solid fa-trash"></i>
             </button>
           </div>
-          <div class="product-image" onclick="goToProduct('${item.id}')">
-            <img src="${item.image}" alt="${item.title}">
+          <div class="product-image" onclick="goToProduct('${product.id}')">
+            <img src="${product.image}" alt="${product.name}">
           </div>
           <div class="product-info">
-            <h4 class="product-title">${item.title}</h4>
+            <h4 class="product-title">${product.name}</h4>
             <div class="product-price">
-              <span class="current-price">${item.price}</span>
+              <span class="current-price">$${product.price}</span>
             </div>
           </div>
-          <button class="add-to-cart-btn" onclick="addToCartFromWishlist('${item.id}')">
+          <button class="add-to-cart-btn" onclick="addToCartFromWishlist('${product.id}')">
             <i class="fa-solid fa-cart-shopping"></i>
             Add To Cart
           </button>
         </div>
-      `).join("")
+        `
+      }).join("")
   }
 }
 
 function removeFromWishlist(productId) {
   let wishlist = JSON.parse(localStorage.getItem("wishlist")) || []
-  wishlist = wishlist.filter(item => item.id !== productId)
+  wishlist = wishlist.filter(id => id !== productId)
   localStorage.setItem("wishlist", JSON.stringify(wishlist))
   renderWishlist()
   showNotification("Item removed from wishlist")
 }
 
-function addToCartFromWishlist(productId) {
+async function addToCartFromWishlist(productId) {
+  await fetchProducts()
   let wishlist = JSON.parse(localStorage.getItem("wishlist")) || []
   let cart = JSON.parse(localStorage.getItem("cart")) || []
-  const item = wishlist.find(item => item.id === productId)
-  if (!item) return
-  const existing = cart.find(c => c.id === item.id)
+  const product = getProductById(productId)
+  if (!product) return
+  const existing = cart.find(c => c.id === productId)
   if (existing) {
     existing.quantity += 1
   } else {
-    cart.push({...item, quantity: 1})
+    cart.push({id: productId, quantity: 1})
   }
   localStorage.setItem("cart", JSON.stringify(cart))
   removeFromWishlist(productId)
@@ -328,15 +355,16 @@ function addToCartFromWishlist(productId) {
   showNotification("Item added to cart")
 }
 
-function moveAllToBag() {
+async function moveAllToBag() {
+  await fetchProducts()
   let wishlist = JSON.parse(localStorage.getItem("wishlist")) || []
   let cart = JSON.parse(localStorage.getItem("cart")) || []
-  wishlist.forEach(item => {
-    const existing = cart.find(c => c.id === item.id)
+  wishlist.forEach(productId => {
+    const existing = cart.find(c => c.id === productId)
     if (existing) {
       existing.quantity += 1
     } else {
-      cart.push({...item, quantity: 1})
+      cart.push({id: productId, quantity: 1})
     }
   })
   localStorage.setItem("cart", JSON.stringify(cart))
