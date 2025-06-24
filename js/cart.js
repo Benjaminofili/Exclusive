@@ -1,43 +1,17 @@
-let PRODUCTS_CACHE = [];
-
-async function fetchProducts() {
-  if (PRODUCTS_CACHE.length) return PRODUCTS_CACHE;
-  if (localStorage.getItem("products")) {
-    PRODUCTS_CACHE = JSON.parse(localStorage.getItem("products"));
-    return PRODUCTS_CACHE;
-  }
-  try {
-    const res = await fetch("products.json");
-    if (!res.ok) throw new Error("Failed to fetch products.json");
-    PRODUCTS_CACHE = await res.json();
-    localStorage.setItem("products", JSON.stringify(PRODUCTS_CACHE));
-    return PRODUCTS_CACHE;
-  } catch (error) {
-    console.error("Error fetching products:", error);
-    return [];
-  }
-}
-
-function getProductById(id) {
-  return PRODUCTS_CACHE.find((p) => p.id === Number(id));
-}
-
-document.addEventListener("DOMContentLoaded", async () => {
-  await fetchProducts();
+document.addEventListener("DOMContentLoaded", () => {
   initializeCartPage();
   updateCartCount();
 });
 
-async function initializeCartPage() {
-  await loadCartItems();
+function initializeCartPage() {
+  loadCartItems();
   initializeQuantityControls();
   initializeRemoveButtons();
   initializeCouponForm();
   updateCartTotals();
 }
 
-async function loadCartItems() {
-  await fetchProducts();
+function loadCartItems() {
   const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
   const cartTableBody = document.querySelector(".cart-table");
 
@@ -52,14 +26,12 @@ async function loadCartItems() {
   }
 
   cartItems.forEach((item, index) => {
-    const product = getProductById(item.id);
-    if (!product) return;
-    const cartItem = createCartItemElement(product, item.quantity, index);
+    const cartItem = createCartItemElement(item.id, item.quantity, index);
     cartTableBody.appendChild(cartItem);
   });
 }
 
-function createCartItemElement(product, quantity, index) {
+function createCartItemElement(productId, quantity, index) {
   const cartItem = document.createElement("div");
   cartItem.className = "cart-item";
   cartItem.dataset.index = index;
@@ -71,12 +43,12 @@ function createCartItemElement(product, quantity, index) {
           <i class="fa-solid fa-xmark"></i>
         </button>
         <div class="product-image">
-          <img src="${product.image}" alt="${product.name}">
+          <span class="static-product-image"></span>
         </div>
-        <div class="product-name">${product.name}</div>
+        <div class="product-name">Product ID: ${productId}</div>
       </div>
     </div>
-    <div class="price-col">$${product.price.toFixed(2)}</div>
+    <div class="price-col">N/A</div>
     <div class="quantity-col">
       <div class="quantity-control">
         <input type="number" value="${quantity}" min="1" max="99" data-index="${index}">
@@ -90,16 +62,14 @@ function createCartItemElement(product, quantity, index) {
         </div>
       </div>
     </div>
-    <div class="subtotal-col">${calculateSubtotal(product.price, quantity)}</div>
+    <div class="subtotal-col">N/A</div>
   `;
 
   return cartItem;
 }
 
 function calculateSubtotal(price, quantity) {
-  const numericPrice = Number.parseFloat(price);
-  const subtotal = numericPrice * quantity;
-  return `$${subtotal.toFixed(2)}`;
+  return "N/A";
 }
 
 function initializeQuantityControls() {
@@ -125,12 +95,8 @@ function initializeQuantityControls() {
 function updateQuantity(index, change) {
   const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
   const item = cartItems[index];
-  const product = getProductById(item.id);
+  if (!item) return;
   const newQuantity = Math.max(1, item.quantity + change);
-  if (newQuantity > product.stockQuantity) {
-    showNotification(`Cannot add more; only ${product.stockQuantity} item(s) available`, "error");
-    return;
-  }
   item.quantity = newQuantity;
   localStorage.setItem("cart", JSON.stringify(cartItems));
   loadCartItems();
@@ -141,11 +107,6 @@ function updateQuantity(index, change) {
 function setQuantity(index, quantity) {
   const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
   if (cartItems[index] && quantity >= 1) {
-    const product = getProductById(cartItems[index].id);
-    if (quantity > product.stockQuantity) {
-      showNotification(`Cannot set quantity; only ${product.stockQuantity} item(s) available`, "error");
-      return;
-    }
     cartItems[index].quantity = quantity;
     localStorage.setItem("cart", JSON.stringify(cartItems));
     loadCartItems();
@@ -173,25 +134,11 @@ function removeCartItem(index) {
   showNotification("Item removed from cart");
 }
 
-async function updateCartTotals() {
-  await fetchProducts();
-  const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-  let subtotal = 0;
-
-  cartItems.forEach((item) => {
-    const product = getProductById(item.id);
-    if (!product) return;
-    subtotal += Number.parseFloat(product.price) * item.quantity;
-  });
-
-  const shipping = 0;
-  const total = subtotal + shipping;
-
+function updateCartTotals() {
   const subtotalElement = document.querySelector(".totals-row:nth-child(1) span:last-child");
   const totalElement = document.querySelector(".totals-row.total span:last-child");
-
-  if (subtotalElement) subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
-  if (totalElement) totalElement.textContent = `$${total.toFixed(2)}`;
+  if (subtotalElement) subtotalElement.textContent = "N/A";
+  if (totalElement) totalElement.textContent = "N/A";
 }
 
 function initializeCouponForm() {
@@ -200,60 +147,17 @@ function initializeCouponForm() {
 
   if (applyCouponBtn) {
     applyCouponBtn.addEventListener("click", () => {
-      const couponCode = couponInput.value.trim();
-      if (couponCode) {
-        applyCoupon(couponCode);
-      }
+      showNotification("Coupons are disabled in static mode", "error");
     });
   }
 }
 
 function applyCoupon(code) {
-  const validCoupons = {
-    SAVE10: 0.1,
-    WELCOME20: 0.2,
-    SUMMER15: 0.15,
-  };
-
-  if (validCoupons[code.toUpperCase()]) {
-    const discount = validCoupons[code.toUpperCase()];
-    showNotification(`Coupon applied! ${discount * 100}% discount`);
-    applyDiscount(discount);
-  } else {
-    showNotification("Invalid coupon code", "error");
-  }
+  showNotification("Coupons are disabled in static mode", "error");
 }
 
-async function applyDiscount(discountPercent) {
-  await fetchProducts();
-  const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-  let subtotal = 0;
-
-  cartItems.forEach((item) => {
-    const product = getProductById(item.id);
-    if (!product) return;
-    subtotal += Number.parseFloat(product.price) * item.quantity;
-  });
-
-  const discount = subtotal * discountPercent;
-  const total = subtotal - discount;
-
-  const totalsContainer = document.querySelector(".cart-totals");
-  let discountRow = totalsContainer.querySelector(".discount-row");
-
-  if (!discountRow) {
-    discountRow = document.createElement("div");
-    discountRow.className = "totals-row discount-row";
-    totalsContainer.insertBefore(discountRow, totalsContainer.querySelector(".totals-row.total"));
-  }
-
-  discountRow.innerHTML = `
-    <span>Discount:</span>
-    <span>-$${discount.toFixed(2)}</span>
-  `;
-
-  const totalElement = document.querySelector(".totals-row.total span:last-child");
-  if (totalElement) totalElement.textContent = `$${total.toFixed(2)}`;
+function applyDiscount(discountPercent) {
+  // No-op in static mode
 }
 
 function showEmptyCart() {

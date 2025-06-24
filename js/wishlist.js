@@ -1,39 +1,13 @@
 /**
  * Wishlist functionality for managing and rendering wishlist items
- * Integrates with products.json and localStorage, using numeric product IDs
+ * No longer fetches or uses products.json; only stores product IDs in localStorage
  */
-
-let PRODUCTS_CACHE = [];
-
-async function fetchProducts() {
-  if (PRODUCTS_CACHE.length) return PRODUCTS_CACHE;
-  if (localStorage.getItem("products")) {
-    PRODUCTS_CACHE = JSON.parse(localStorage.getItem("products"));
-    return PRODUCTS_CACHE;
-  }
-  try {
-    const res = await fetch("products.json");
-    if (!res.ok) throw new Error("Failed to fetch products.json");
-    PRODUCTS_CACHE = await res.json();
-    localStorage.setItem("products", JSON.stringify(PRODUCTS_CACHE));
-    return PRODUCTS_CACHE;
-  } catch (error) {
-    console.error("Error fetching products:", error);
-    return [];
-  }
-}
-
-function getProductById(id) {
-  return PRODUCTS_CACHE.find((p) => p.id === Number(id));
-}
 
 function getSanitizedWishlist() {
   let wishlist = [];
   try {
     wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-    // Convert all IDs to numbers and ensure uniqueness
     wishlist = Array.from(new Set(wishlist.map(id => Number(id))));
-    // Filter out invalid numbers (e.g., NaN)
     wishlist = wishlist.filter(id => !isNaN(id) && Number.isInteger(id));
     localStorage.setItem("wishlist", JSON.stringify(wishlist));
   } catch {
@@ -42,8 +16,7 @@ function getSanitizedWishlist() {
   return wishlist;
 }
 
-document.addEventListener("DOMContentLoaded", async () => {
-  await fetchProducts();
+document.addEventListener("DOMContentLoaded", () => {
   console.log("wishlist.js: Initializing wishlist functionality");
   initializeWishlistActions();
   renderWishlist();
@@ -93,16 +66,13 @@ function initializeWishlistActions() {
       e.preventDefault();
       e.stopPropagation();
       console.log("wishlist.js: Add to cart button clicked");
-      const productCard = addToCartBtn.closest(".product-card");
-      if (productCard) {
-        addToCartFromWishlist(Number(productCard.dataset.productId));
-      }
+      // No longer supports adding to cart from wishlist
+      showNotification("Add to cart is disabled in static mode", "error");
     }
   });
 }
 
-async function renderWishlist() {
-  await fetchProducts();
+function renderWishlist() {
   console.log("wishlist.js: Rendering wishlist");
   const wishlistGrid = document.querySelector(".wishlist-grid");
   const wishlistIds = getSanitizedWishlist();
@@ -111,31 +81,20 @@ async function renderWishlist() {
     wishlistGrid.innerHTML = wishlistIds.length === 0
       ? "<p>Your wishlist is empty.</p>"
       : wishlistIds.map(id => {
-          const product = getProductById(id);
-          if (!product) return "";
+          // Static rendering: just show the product ID
           return `
-            <div class="product-card" data-product-id="${product.id}">
+            <div class="product-card" data-product-id="${id}">
               <div class="product-actions">
                 <button class="action-btn delete-btn" title="Remove from Wishlist">
                   <i class="fa-solid fa-trash"></i>
                 </button>
-                <button class="action-btn wishlist-btn ${wishlistIds.includes(Number(product.id)) ? 'active' : ''}" title="${wishlistIds.includes(Number(product.id)) ? 'Remove from Wishlist' : 'Add to Wishlist'}">
-                  <i class="fa-${wishlistIds.includes(Number(product.id)) ? 'solid' : 'regular'} fa-heart"></i>
+                <button class="action-btn wishlist-btn active" title="Remove from Wishlist">
+                  <i class="fa-solid fa-heart"></i>
                 </button>
               </div>
-              <div class="product-image" onclick="goToProduct(${product.id})">
-                <img src="${product.image}" alt="${product.name}">
-              </div>
               <div class="product-info">
-                <h4 class="product-title">${product.name}</h4>
-                <div class="product-price">
-                  <span class="current-price">$${product.price.toFixed(2)}</span>
-                  ${product.originalPrice ? `<span class="original-price">$${product.originalPrice.toFixed(2)}</span>` : ""}
-                </div>
+                <h4 class="product-title">Product ID: ${id}</h4>
               </div>
-              <button class="add-to-cart-btn" title="Add to cart">
-                <i class="fa-solid fa-cart-shopping"></i> Add to Cart
-              </button>
             </div>
           `;
         }).join("");
@@ -220,48 +179,12 @@ function removeFromWishlist(element) {
   }, 300);
 }
 
-async function addToCartFromWishlist(productId) {
-  console.log("wishlist.js: Adding to cart from wishlist", productId);
-  await fetchProducts();
-  const numericId = Number(productId);
-  const product = getProductById(numericId);
-  if (!product) return;
-
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const existing = cart.find(c => c.id === numericId);
-  if (existing) {
-    existing.quantity += 1;
-  } else {
-    cart.push({ id: numericId, quantity: 1 });
-  }
-  localStorage.setItem("cart", JSON.stringify(cart));
-  const wishlist = getSanitizedWishlist();
-  const updatedWishlist = wishlist.filter(id => id !== numericId);
-  localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
-  updateCartCount();
-  showNotification(`${product.name} added to cart`);
-  renderWishlist();
-}
-
-async function moveAllToBag() {
+function moveAllToBag() {
   console.log("wishlist.js: Moving all to bag");
-  await fetchProducts();
-  const wishlist = getSanitizedWishlist();
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  wishlist.forEach(productId => {
-    const numericId = Number(productId);
-    const existing = cart.find(c => c.id === numericId);
-    if (existing) {
-      existing.quantity += 1;
-    } else {
-      cart.push({ id: numericId, quantity: 1 });
-    }
-  });
-  localStorage.setItem("cart", JSON.stringify(cart));
+  // No longer supports moving to cart in static mode
+  showNotification("Move all to cart is disabled in static mode", "error");
   localStorage.setItem("wishlist", JSON.stringify([]));
   updateWishlistCount();
-  updateCartCount();
-  showNotification("All items moved to cart");
   renderWishlist();
 }
 
@@ -290,18 +213,17 @@ function updateWishlistCount() {
 
 function updateCartCount() {
   console.log("wishlist.js: Updating cart count");
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+  // Cart logic is disabled in static mode
   const cartBadge = document.getElementById("cart-badge");
   if (cartBadge) {
-    cartBadge.textContent = totalItems;
-    cartBadge.style.display = totalItems > 0 ? "flex" : "none";
+    cartBadge.textContent = "0";
+    cartBadge.style.display = "none";
   }
 }
 
 function goToProduct(productId) {
   console.log("wishlist.js: Navigating to product", productId);
-  window.location.href = `product.html?id=${productId}`;
+  // No navigation in static mode
 }
 
 function showNotification(message, type = "success") {

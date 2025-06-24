@@ -142,50 +142,115 @@ function initializeMobileMenu() {
   });
 }
 
+// --- Product List for Search (expand as needed) ---
+const PRODUCT_LIST = [
+  { id: "flash-gamepad-001", title: "HAVIT HV-G92 Gamepad" },
+  { id: "flash-keyboard-002", title: "AK-900 Wired Keyboard" },
+  { id: "flash-monitor-003", title: "IPS LCD Gaming Monitor" },
+  { id: "flash-chair-004", title: "S-Series Comfort Chair" },
+  { id: "dog-food-014", title: "Breed Dry Dog Food" },
+  { id: "canon-camera-015", title: "CANON EOS DSLR Camera" },
+  { id: "asus-laptop-009", title: "ASUS FHD Gaming Laptop" },
+  { id: "curology-set-011", title: "Curology Product Set" },
+  { id: "kids-car-012", title: "Kids Electric Car" },
+  { id: "soccer-cleats-013", title: "Jr. Soccer Cleats" },
+  { id: "gamepad-black-008", title: "GP11 Shooter USB Gamepad" },
+  { id: "quilted-jacket-007", title: "Quilted Satin Jacket" },
+  // ...add more products as needed...
+];
+
+// --- Search Results UI ---
+function renderSearchResults(results, container) {
+  let resultsBox = container.querySelector(".search-results");
+  if (!resultsBox) {
+    resultsBox = document.createElement("div");
+    resultsBox.className = "search-results";
+    container.appendChild(resultsBox);
+  }
+  if (!results.length) {
+    resultsBox.innerHTML = "<div class='search-no-results'>No products found.</div>";
+    resultsBox.style.display = "block";
+    return;
+  }
+  resultsBox.innerHTML = results.map(
+    p => `<div class="search-result-item" data-product-id="${p.id}">${p.title}</div>`
+  ).join("");
+  resultsBox.style.display = "block";
+}
+
+// --- Hide Search Results ---
+function hideSearchResults(container) {
+  const resultsBox = container.querySelector(".search-results");
+  if (resultsBox) resultsBox.style.display = "none";
+}
+
+// --- Search Initialization ---
 function initializeSearch() {
-  const searchInput = document.querySelector(".search-bar input");
-  const searchBtn = document.querySelector(".search-bar button");
+  const searchBars = document.querySelectorAll(".search-bar");
+  searchBars.forEach((bar) => {
+    let input = bar.querySelector("input");
+    let button = bar.querySelector("button");
+    if (!input) return;
 
-  if (!searchInput) return;
-
-  function performSearch() {
-    const query = searchInput.value.trim();
-    if (query) {
-      console.log("Searching for:", query);
-      showNotification(`Searching for: ${query}`);
+    // Create results container if not present
+    if (!bar.querySelector(".search-results")) {
+      const resultsDiv = document.createElement("div");
+      resultsDiv.className = "search-results";
+      resultsDiv.style.display = "none";
+      bar.appendChild(resultsDiv);
     }
-  }
 
-  searchBtn.addEventListener("click", performSearch);
-  searchInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
+    function performSearch() {
+      const query = input.value.trim().toLowerCase();
+      if (query) {
+        // Main matches: title includes query
+        const mainResults = PRODUCT_LIST.filter(p =>
+          p.title.toLowerCase().includes(query)
+        );
+        // Related: any word in title starts with query, but not already in mainResults
+        const relatedResults = PRODUCT_LIST.filter(p => {
+          if (mainResults.includes(p)) return false;
+          return p.title
+            .toLowerCase()
+            .split(/\s+/)
+            .some(word => word.startsWith(query));
+        });
+        // Combine, with main results first, then related
+        const results = mainResults.concat(relatedResults);
+        renderSearchResults(results, bar);
+      } else {
+        hideSearchResults(bar);
+      }
+    }
+
+    button && button.addEventListener("click", (e) => {
+      e.preventDefault();
       performSearch();
-    }
+    });
+    input.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        performSearch();
+      }
+    });
+input.addEventListener("input", () => {
+  performSearch();
+});
+
+    // Hide results when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!bar.contains(e.target)) hideSearchResults(bar);
+    });
+
+    // Optional: click on result navigates to product page (if exists)
+    bar.addEventListener("click", (e) => {
+      const item = e.target.closest(".search-result-item");
+      if (item) {
+        // Example: go to product.html?id=...
+        window.location.href = "product.html?id=" + encodeURIComponent(item.dataset.productId);
+      }
+    });
   });
-}
-
-let PRODUCTS_CACHE = [];
-
-async function fetchProducts() {
-  if (PRODUCTS_CACHE.length) return PRODUCTS_CACHE;
-  if (localStorage.getItem("products")) {
-    PRODUCTS_CACHE = JSON.parse(localStorage.getItem("products"));
-    return PRODUCTS_CACHE;
-  }
-  try {
-    const res = await fetch("products.json");
-    if (!res.ok) throw new Error("Failed to fetch products.json");
-    PRODUCTS_CACHE = await res.json();
-    localStorage.setItem("products", JSON.stringify(PRODUCTS_CACHE));
-    return PRODUCTS_CACHE;
-  } catch (error) {
-    console.error("Error fetching products:", error);
-    return [];
-  }
-}
-
-function getProductById(id) {
-  return PRODUCTS_CACHE.find((p) => p.id === Number(id));
 }
 
 function getSanitizedWishlist() {
@@ -260,8 +325,7 @@ function initializeProductActions() {
   });
 }
 
-async function addToCart(productCard) {
-  await fetchProducts();
+function addToCart(productCard) {
   const productId = Number(productCard.dataset.productId);
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   const existing = cart.find(c => c.id === productId);
@@ -272,16 +336,11 @@ async function addToCart(productCard) {
   }
   localStorage.setItem("cart", JSON.stringify(cart));
   updateCartBadge();
-  const product = getProductById(productId);
-  showNotification(`${product ? product.name : "Product"} added to cart`);
+  showNotification(`Product ID ${productId} added to cart`);
 }
 
 function openQuickView(productCard) {
   const productId = Number(productCard.dataset.productId);
-  const product = getProductById(productId);
-  const productTitle = product ? product.name : productCard.querySelector(".product-title")?.textContent;
-  const productPrice = product ? `$${product.price.toFixed(2)}` : productCard.querySelector(".current-price")?.textContent;
-  const productImage = product ? product.image : productCard.querySelector(".product-image img")?.src;
 
   const modal = document.createElement("div");
   modal.className = "quick-view-modal";
@@ -289,10 +348,10 @@ function openQuickView(productCard) {
     <div class="modal-content">
       <button class="close-modal">×</button>
       <div class="modal-product">
-        <img src="${productImage}" alt="${productTitle}">
+        <span class="static-product-image"></span>
         <div class="modal-info">
-          <h3>${productTitle}</h3>
-          <p class="price">${productPrice}</p>
+          <h3>Product ID: ${productId}</h3>
+          <p class="price">N/A</p>
           <button class="add-to-cart-btn">Add to Cart</button>
         </div>
       </div>
@@ -370,7 +429,7 @@ function showNotification(message) {
 }
 
 function goToProduct(productId) {
-  window.location.href = `product.html?id=${productId}`;
+  // No navigation in static mode
 }
 
 function initializeCategorySlider() {
@@ -519,6 +578,42 @@ mainStyle.textContent = `
   }
 `;
 document.head.appendChild(mainStyle);
+
+// --- Search Results Styles ---
+const searchResultsStyle = document.createElement("style");
+searchResultsStyle.textContent = `
+.search-bar {
+  position: relative;
+}
+.search-results {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  z-index: 1001;
+  max-height: 260px;
+  overflow-y: auto;
+  font-size: 14px;
+  display: none;
+}
+.search-result-item {
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.search-result-item:hover {
+  background: #f5f5f5;
+}
+.search-no-results {
+  padding: 10px 16px;
+  color: #888;
+}
+`;
+document.head.appendChild(searchResultsStyle);
 
 window.addEventListener('storage', (event) => {
   if (event.key === 'cart') updateCartBadge();
