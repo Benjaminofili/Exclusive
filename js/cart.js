@@ -1,43 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-  renderStaticCart();
   updateStaticCartCount();
 });
 
-function renderStaticCart() {
-  const cartTableBody = document.querySelector(".cart-table");
-  if (!cartTableBody) return;
-  // Hardcoded static cart items
-  const staticCart = [
-    {
-      id: "flash-gamepad-001",
-      title: "HAVIT HV-G92 Gamepad",
-      quantity: 1
-    }
-  ];
-  cartTableBody.innerHTML = staticCart.map((item, index) => `
-    <div class="cart-item" data-index="${index}">
-      <div class="product-col">
-        <div class="product-info">
-          <button class="remove-btn" disabled>
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-          <div class="product-image">
-            <span class="static-product-image"></span>
-          </div>
-          <div class="product-name">${item.title}</div>
-        </div>
-      </div>
-      <div class="price-col">N/A</div>
-      <div class="quantity-col">
-        <div class="quantity-control">
-          <input type="number" value="${item.quantity}" min="1" max="99" disabled>
-        </div>
-      </div>
-      <div class="subtotal-col">N/A</div>
-    </div>
-  `).join("");
-  updateStaticCartTotals();
-}
+
 
 function updateStaticCartTotals() {
   const subtotalElement = document.querySelector(".totals-row:nth-child(1) span:last-child");

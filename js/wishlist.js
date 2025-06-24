@@ -3,40 +3,11 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-  renderStaticWishlist();
   updateStaticWishlistCount();
   updateStaticCartCount();
 });
 
-function renderStaticWishlist() {
-  const wishlistGrid = document.querySelector(".wishlist-grid");
-  // Hardcoded static wishlist items
-  const staticWishlist = [
-    {
-      id: "flash-gamepad-001",
-      title: "HAVIT HV-G92 Gamepad"
-    },
-    {
-      id: "asus-laptop-009",
-      title: "ASUS FHD Gaming Laptop"
-    }
-  ];
-  if (wishlistGrid) {
-    wishlistGrid.innerHTML = staticWishlist.map(item => `
-      <div class="product-card" data-product-id="${item.id}">
-        <div class="product-actions">
-          <button class="action-btn wishlist-btn active" title="In Wishlist" disabled>
-            <i class="fa-solid fa-heart"></i>
-          </button>
-        </div>
-        <div class="product-info">
-          <h4 class="product-title">${item.title}</h4>
-        </div>
-      </div>
-    `).join("");
-  }
-  updateStaticWishlistHeader(staticWishlist.length);
-}
+
 
 function updateStaticWishlistHeader(count) {
   const header = document.querySelector(".wishlist-header h1");
